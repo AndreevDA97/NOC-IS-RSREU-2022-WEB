@@ -1,0 +1,166 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d25db439-9450-4c8e-94bf-0ef33065bacc": {
+      "ProjectGuid": "d25db439-9450-4c8e-94bf-0ef33065bacc",
+      "DisplayName": "ServiceCMDRunner",
+      "ColorIndex": 0
+    },
+    "d2e67a46-2b9c-4693-a92a-7a818784f4e3": {
+      "ProjectGuid": "d2e67a46-2b9c-4693-a92a-7a818784f4e3",
+      "DisplayName": "AtolPosSystemService",
+      "ColorIndex": 1
+    },
+    "d3cf54e8-91f8-4591-916a-57de2c22a0aa": {
+      "ProjectGuid": "d3cf54e8-91f8-4591-916a-57de2c22a0aa",
+      "DisplayName": "PaySystemCommon",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "13f30ead-4113-42c3-9bfe-94b7e0d96173": {
+      "ProjectGuid": "13f30ead-4113-42c3-9bfe-94b7e0d96173",
+      "DisplayName": "ServerLibrary",
+      "ColorIndex": 3
+    },
+    "7aa1f025-50d2-4331-86e0-15af87397cf2": {
+      "ProjectGuid": "7aa1f025-50d2-4331-86e0-15af87397cf2",
+      "DisplayName": "PortalWebApp",
+      "ColorIndex": 4
+    },
+    "4555a173-372c-4979-8837-075468f09af2": {
+      "ProjectGuid": "4555a173-372c-4979-8837-075468f09af2",
+      "DisplayName": "DeferredPayService",
+      "ColorIndex": 5
+    },
+    "2a71193f-ac91-4764-b5e6-422081810370": {
+      "ProjectGuid": "2a71193f-ac91-4764-b5e6-422081810370",
+      "DisplayName": "PosSystemLibraryTests",
+      "ColorIndex": 6
+    },
+    "47317fd2-75c0-4844-a608-bff97fde89fb": {
+      "ProjectGuid": "47317fd2-75c0-4844-a608-bff97fde89fb",
+      "DisplayName": "AdminWebApp",
+      "ColorIndex": 7
+    },
+    "0fe9751f-2e28-436d-8e27-f8bb17c9df14": {
+      "ProjectGuid": "0fe9751f-2e28-436d-8e27-f8bb17c9df14",
+      "DisplayName": "PaySystemWebCommon",
+      "ColorIndex": 8
+    },
+    "df474dde-b0d1-41ca-a375-b7e60765c488": {
+      "ProjectGuid": "df474dde-b0d1-41ca-a375-b7e60765c488",
+      "DisplayName": "TestProjectMain",
+      "ColorIndex": 9
+    },
+    "9b2665ef-537b-4888-b448-e050b968da98": {
+      "ProjectGuid": "9b2665ef-537b-4888-b448-e050b968da98",
+      "DisplayName": "PosSystemLibrary",
+      "ColorIndex": 10
+    },
+    "3a206923-954e-4dac-934c-5c854589b75e": {
+      "ProjectGuid": "3a206923-954e-4dac-934c-5c854589b75e",
+      "DisplayName": "PracticeWebApp",
+      "ColorIndex": 11
+    },
+    "564b4486-bd2e-4668-b193-4f993688bc7e": {
+      "ProjectGuid": "564b4486-bd2e-4668-b193-4f993688bc7e",
+      "DisplayName": "GISGKHRunServices",
+      "ColorIndex": 12
+    },
+    "52f706cb-2591-461b-8bdc-bbdb82d62dad": {
+      "ProjectGuid": "52f706cb-2591-461b-8bdc-bbdb82d62dad",
+      "DisplayName": "GISGKHService",
+      "ColorIndex": 13
+    },
+    "ee1dc57a-344a-4b0a-82ce-5fd328c14894": {
+      "ProjectGuid": "ee1dc57a-344a-4b0a-82ce-5fd328c14894",
+      "DisplayName": "GISGKHLibrary",
+      "ColorIndex": 14
+    },
+    "c62498b9-1c81-46c1-96e9-98438b606fde": {
+      "ProjectGuid": "c62498b9-1c81-46c1-96e9-98438b606fde",
+      "DisplayName": "Web",
+      "ColorIndex": 15
+    },
+    "fe6f9f33-6704-4b1d-9698-7702d50aa079": {
+      "ProjectGuid": "fe6f9f33-6704-4b1d-9698-7702d50aa079",
+      "DisplayName": "GisGkh",
+      "ColorIndex": 0
+    },
+    "a86ad3d2-67f3-4e08-80aa-451a3e7097d2": {
+      "ProjectGuid": "a86ad3d2-67f3-4e08-80aa-451a3e7097d2",
+      "DisplayName": "ReportLibrary",
+      "ColorIndex": 1
+    },
+    "38872a5f-e87e-4fad-b109-8eb7b2e6a4a0": {
+      "ProjectGuid": "38872a5f-e87e-4fad-b109-8eb7b2e6a4a0",
+      "DisplayName": "crypto",
+      "ColorIndex": 2
+    },
+    "919fd655-f067-4ba2-b932-d926e85dd6b4": {
+      "ProjectGuid": "919fd655-f067-4ba2-b932-d926e85dd6b4",
+      "DisplayName": "Документы скриптов",
+      "ColorIndex": 3
+    },
+    "d7a7cc8a-363f-46f6-acf9-86445488a4c4": {
+      "ProjectGuid": "d7a7cc8a-363f-46f6-acf9-86445488a4c4",
+      "DisplayName": "ReportUtility",
+      "ColorIndex": 4
+    },
+    "3ebedbe0-7ec5-4869-b8a0-48ac213fe8e0": {
+      "ProjectGuid": "3ebedbe0-7ec5-4869-b8a0-48ac213fe8e0",
+      "DisplayName": "AbonentPlusPaySystemClient",
+      "ColorIndex": 5
+    },
+    "60f13ca0-c098-482c-9161-0fdaead05706": {
+      "ProjectGuid": "60f13ca0-c098-482c-9161-0fdaead05706",
+      "DisplayName": "GISGKHWinService",
+      "ColorIndex": 6
+    },
+    "71c1f14a-3694-4a45-ba08-708e6f57fb0d": {
+      "ProjectGuid": "71c1f14a-3694-4a45-ba08-708e6f57fb0d",
+      "DisplayName": "GISGKHTests",
+      "ColorIndex": 7
+    },
+    "3b7aa1b0-2b14-4fa8-91e6-c6d53bccad29": {
+      "ProjectGuid": "3b7aa1b0-2b14-4fa8-91e6-c6d53bccad29",
+      "DisplayName": "PrivateCabinet2",
+      "ColorIndex": 8
+    },
+    "ba8582bd-00c5-4e57-a7a5-842726c780c4": {
+      "ProjectGuid": "ba8582bd-00c5-4e57-a7a5-842726c780c4",
+      "DisplayName": "ClientLibrary",
+      "ColorIndex": 9
+    },
+    "f8cfc607-9bfa-493c-9685-e25fccf7c3d5": {
+      "ProjectGuid": "f8cfc607-9bfa-493c-9685-e25fccf7c3d5",
+      "DisplayName": "PaySystemWebApi",
+      "ColorIndex": 10
+    },
+    "8a4c19ef-4e52-406f-8ddb-af18412d91f7": {
+      "ProjectGuid": "8a4c19ef-4e52-406f-8ddb-af18412d91f7",
+      "DisplayName": "EmailWatcherService",
+      "ColorIndex": 11
+    },
+    "14688079-2596-4fc6-9904-291b6063c90e": {
+      "ProjectGuid": "14688079-2596-4fc6-9904-291b6063c90e",
+      "DisplayName": "MainSiteWebApp",
+      "ColorIndex": 12
+    },
+    "444a8859-1b14-4e91-94b5-2483dd79b6ad": {
+      "ProjectGuid": "444a8859-1b14-4e91-94b5-2483dd79b6ad",
+      "DisplayName": "WebService",
+      "ColorIndex": 13
+    },
+    "cb25fe58-2e62-409c-856a-0837077b4787": {
+      "ProjectGuid": "cb25fe58-2e62-409c-856a-0837077b4787",
+      "DisplayName": "Server",
+      "ColorIndex": 14
+    }
+  },
+  "NextColorIndex": 15
+}

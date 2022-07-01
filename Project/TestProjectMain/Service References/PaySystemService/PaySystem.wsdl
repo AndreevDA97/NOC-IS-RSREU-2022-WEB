@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="validateClientID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validateClientIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="validateClientIDResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultClient" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OperationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Block" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ok" />
+          <s:enumeration value="Ошибка_в_работе_сервера" />
+          <s:enumeration value="Клиент_не_найден" />
+          <s:enumeration value="Неопределено" />
+          <s:enumeration value="Заблокировать_работу_клиента" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RegisterPays">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pays" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterPaysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterPaysResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionNumbers" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendCurrentState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientCurrentStateParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCurrentStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendCurrentStateResult" type="tns:OperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterMessages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Messages" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterMessagesResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageIDs" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPay" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPayInfoResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultPay" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaysInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="numbers" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaysInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaysInfoResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultPays" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClientInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClientInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientInfoResult" type="tns:RemoteFileInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RemoteFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DownloadPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUpdateFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdateFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUpdateFilesResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckConnection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckConnectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckConnectionResult" type="tns:OperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientParams">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientParamsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientParamsResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentDestinationIcon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="paymentDestinationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentDestinationIconResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentDestinationIconResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Icon" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupPaymentDestinationIcon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="groupPaymentDestinationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupPaymentDestinationIconResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupPaymentDestinationIconResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Icon" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AAccountInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountInfoResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="AAccountInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientLastPayInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientLastPayInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientLastPayInfoResult" type="tns:OperationResult" />
+            <s:element minOccurs="1" maxOccurs="1" name="terminalTransaction" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="collectionNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="collectionSumma" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientAdvertisements">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientAdvertisementsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientAdvertisementsResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="AAdvertisementSet" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientPlugins">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientPluginsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientPluginsResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="pluginset" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FileRecord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartPosition" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangedAccountInfos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ACount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangedAccountInfosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChangedAccountInfosResult" type="tns:OperationResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="ASerializedAccountInfos" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmAccountInfos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AConfirmedAccountInfos" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConfirmAccountInfosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmAccountInfosResult" type="tns:OperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="validateClientIDSoapIn">
+    <wsdl:part name="parameters" element="tns:validateClientID" />
+  </wsdl:message>
+  <wsdl:message name="validateClientIDSoapOut">
+    <wsdl:part name="parameters" element="tns:validateClientIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClient" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterPaysSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterPays" />
+  </wsdl:message>
+  <wsdl:message name="RegisterPaysSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterPaysResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCurrentStateSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCurrentState" />
+  </wsdl:message>
+  <wsdl:message name="SendCurrentStateSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCurrentStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterMessages" />
+  </wsdl:message>
+  <wsdl:message name="RegisterMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPayInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPayInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPayInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPayInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaysInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaysInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPaysInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaysInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClientInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:ClientInfo" />
+  </wsdl:message>
+  <wsdl:message name="ClientInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:ClientInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdateFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdateFiles" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdateFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdateFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckConnectionSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckConnection" />
+  </wsdl:message>
+  <wsdl:message name="CheckConnectionSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientParamsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientParams" />
+  </wsdl:message>
+  <wsdl:message name="GetClientParamsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientParamsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentDestinationIconSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentDestinationIcon" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentDestinationIconSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentDestinationIconResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupPaymentDestinationIconSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupPaymentDestinationIcon" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupPaymentDestinationIconSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupPaymentDestinationIconResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientLastPayInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientLastPayInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetClientLastPayInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientLastPayInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientAdvertisementsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientAdvertisements" />
+  </wsdl:message>
+  <wsdl:message name="GetClientAdvertisementsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientAdvertisementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientPluginsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientPlugins" />
+  </wsdl:message>
+  <wsdl:message name="GetClientPluginsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientPluginsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileData" />
+  </wsdl:message>
+  <wsdl:message name="GetFileDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChangedAccountInfosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChangedAccountInfos" />
+  </wsdl:message>
+  <wsdl:message name="GetChangedAccountInfosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChangedAccountInfosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmAccountInfosSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmAccountInfos" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmAccountInfosSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmAccountInfosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PaySystemServiceSoap">
+    <wsdl:operation name="validateClientID">
+      <wsdl:input message="tns:validateClientIDSoapIn" />
+      <wsdl:output message="tns:validateClientIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <wsdl:input message="tns:GetClientSoapIn" />
+      <wsdl:output message="tns:GetClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPays">
+      <wsdl:input message="tns:RegisterPaysSoapIn" />
+      <wsdl:output message="tns:RegisterPaysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendCurrentState">
+      <wsdl:input message="tns:SendCurrentStateSoapIn" />
+      <wsdl:output message="tns:SendCurrentStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterMessages">
+      <wsdl:input message="tns:RegisterMessagesSoapIn" />
+      <wsdl:output message="tns:RegisterMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayInfo">
+      <wsdl:input message="tns:GetPayInfoSoapIn" />
+      <wsdl:output message="tns:GetPayInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaysInfo">
+      <wsdl:input message="tns:GetPaysInfoSoapIn" />
+      <wsdl:output message="tns:GetPaysInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientInfo">
+      <wsdl:input message="tns:ClientInfoSoapIn" />
+      <wsdl:output message="tns:ClientInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateFiles">
+      <wsdl:input message="tns:GetUpdateFilesSoapIn" />
+      <wsdl:output message="tns:GetUpdateFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <wsdl:input message="tns:CheckConnectionSoapIn" />
+      <wsdl:output message="tns:CheckConnectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientParams">
+      <wsdl:input message="tns:GetClientParamsSoapIn" />
+      <wsdl:output message="tns:GetClientParamsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDestinationIcon">
+      <wsdl:input message="tns:GetPaymentDestinationIconSoapIn" />
+      <wsdl:output message="tns:GetPaymentDestinationIconSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPaymentDestinationIcon">
+      <wsdl:input message="tns:GetGroupPaymentDestinationIconSoapIn" />
+      <wsdl:output message="tns:GetGroupPaymentDestinationIconSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInfo">
+      <wsdl:input message="tns:GetAccountInfoSoapIn" />
+      <wsdl:output message="tns:GetAccountInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientLastPayInfo">
+      <wsdl:input message="tns:GetClientLastPayInfoSoapIn" />
+      <wsdl:output message="tns:GetClientLastPayInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAdvertisements">
+      <wsdl:input message="tns:GetClientAdvertisementsSoapIn" />
+      <wsdl:output message="tns:GetClientAdvertisementsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPlugins">
+      <wsdl:input message="tns:GetClientPluginsSoapIn" />
+      <wsdl:output message="tns:GetClientPluginsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <wsdl:input message="tns:GetFileDataSoapIn" />
+      <wsdl:output message="tns:GetFileDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedAccountInfos">
+      <wsdl:input message="tns:GetChangedAccountInfosSoapIn" />
+      <wsdl:output message="tns:GetChangedAccountInfosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmAccountInfos">
+      <wsdl:input message="tns:ConfirmAccountInfosSoapIn" />
+      <wsdl:output message="tns:ConfirmAccountInfosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaySystemServiceSoap" type="tns:PaySystemServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateClientID">
+      <soap:operation soapAction="http://tempuri.org/validateClientID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <soap:operation soapAction="http://tempuri.org/GetClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPays">
+      <soap:operation soapAction="http://tempuri.org/RegisterPays" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCurrentState">
+      <soap:operation soapAction="http://tempuri.org/SendCurrentState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterMessages">
+      <soap:operation soapAction="http://tempuri.org/RegisterMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayInfo">
+      <soap:operation soapAction="http://tempuri.org/GetPayInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaysInfo">
+      <soap:operation soapAction="http://tempuri.org/GetPaysInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientInfo">
+      <soap:operation soapAction="http://tempuri.org/ClientInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateFiles">
+      <soap:operation soapAction="http://tempuri.org/GetUpdateFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <soap:operation soapAction="http://tempuri.org/CheckConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientParams">
+      <soap:operation soapAction="http://tempuri.org/GetClientParams" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDestinationIcon">
+      <soap:operation soapAction="http://tempuri.org/GetPaymentDestinationIcon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPaymentDestinationIcon">
+      <soap:operation soapAction="http://tempuri.org/GetGroupPaymentDestinationIcon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInfo">
+      <soap:operation soapAction="http://tempuri.org/GetAccountInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientLastPayInfo">
+      <soap:operation soapAction="http://tempuri.org/GetClientLastPayInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAdvertisements">
+      <soap:operation soapAction="http://tempuri.org/GetClientAdvertisements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPlugins">
+      <soap:operation soapAction="http://tempuri.org/GetClientPlugins" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <soap:operation soapAction="http://tempuri.org/GetFileData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedAccountInfos">
+      <soap:operation soapAction="http://tempuri.org/GetChangedAccountInfos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmAccountInfos">
+      <soap:operation soapAction="http://tempuri.org/ConfirmAccountInfos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PaySystemServiceSoap12" type="tns:PaySystemServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateClientID">
+      <soap12:operation soapAction="http://tempuri.org/validateClientID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <soap12:operation soapAction="http://tempuri.org/GetClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPays">
+      <soap12:operation soapAction="http://tempuri.org/RegisterPays" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCurrentState">
+      <soap12:operation soapAction="http://tempuri.org/SendCurrentState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterMessages">
+      <soap12:operation soapAction="http://tempuri.org/RegisterMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetPayInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaysInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetPaysInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientInfo">
+      <soap12:operation soapAction="http://tempuri.org/ClientInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateFiles">
+      <soap12:operation soapAction="http://tempuri.org/GetUpdateFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <soap12:operation soapAction="http://tempuri.org/CheckConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientParams">
+      <soap12:operation soapAction="http://tempuri.org/GetClientParams" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDestinationIcon">
+      <soap12:operation soapAction="http://tempuri.org/GetPaymentDestinationIcon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPaymentDestinationIcon">
+      <soap12:operation soapAction="http://tempuri.org/GetGroupPaymentDestinationIcon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientLastPayInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetClientLastPayInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAdvertisements">
+      <soap12:operation soapAction="http://tempuri.org/GetClientAdvertisements" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPlugins">
+      <soap12:operation soapAction="http://tempuri.org/GetClientPlugins" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <soap12:operation soapAction="http://tempuri.org/GetFileData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedAccountInfos">
+      <soap12:operation soapAction="http://tempuri.org/GetChangedAccountInfos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmAccountInfos">
+      <soap12:operation soapAction="http://tempuri.org/ConfirmAccountInfos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaySystemService">
+    <wsdl:port name="PaySystemServiceSoap" binding="tns:PaySystemServiceSoap">
+      <soap:address location="http://localhost:3304/WebService/PaySystem.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PaySystemServiceSoap12" binding="tns:PaySystemServiceSoap12">
+      <soap12:address location="http://localhost:3304/WebService/PaySystem.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

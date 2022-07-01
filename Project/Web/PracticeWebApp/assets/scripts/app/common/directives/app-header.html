@@ -1,0 +1,72 @@
+﻿<div>
+<div class="container">
+    <app-login data="appLoginModel"></app-login>
+    <div class="top-bar-place">
+        <div class="username-bar-place" ng-show="user == null">
+            Вход не выполнен
+            <ul class="nav username-pills">
+                <!--<li class="disabled"><a href="#">Регистрация</a></li>-->
+                <li>
+                    <a href="" ng-click="startLogIn()">Вход</a>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="username-bar-place" ng-show="user">
+            {{user.Name}} (логин:{{user.Login}})
+            <ul class="nav username-pills">
+                <li>
+                    <a href="" ng-click="logout()">Выход</a>
+
+                </li>
+            </ul>
+        </div>
+
+        <ul class="nav extlink-pills">
+            <li><a href="http://portal.abonent.plus"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;На портал</a></li>
+        </ul>
+        
+        <div class="clearfix"></div>
+
+        <ul class="nav support-pills hidden-xs">
+            <li ng-class="{'active': currentTab == 'about'}"><a href="/about">О проекте</a></li>
+            <li><a href="https://abonent.plus/product_07">Подробнее</a></li>
+            <li><a href="https://doc.abonent.plus/index.php/Претензионно_исковая_система">Документация</a></li>
+        </ul>
+    </div>
+
+    <div class="top-bar-place" style="line-height:1; height:auto; position:relative; margin-bottom:10px">
+        <div ng-show="user.InfoMsg" ng-bind-html="user.InfoMsg" class="font-small-info" style="padding-top:3px"></div>
+        <div ng-show="user.DangerMsg" ng-bind-html="user.DangerMsg" class="font-small-danger" style="padding-top:3px"></div>
+        <div ng-show="user.WarningMsg" ng-bind-html="user.WarningMsg" class="font-small-warning" style="padding-top:3px"></div>
+    </div>
+
+    <div class="main-logo-place">
+        <div class="hidden-xs">
+            <img width="200" height="50" alt="" src="/assets/images/abn_logo_default_01_01.png">
+        </div>
+        <div class="visible-xs">
+            <img width="176" height="44" alt="" src="/assets/images/abn_logo_default_02_01.png">
+        </div>
+    </div>
+
+    
+</div>
+<div class="container">
+    <nav class="navbar" role="navigation">
+
+        <!-- шапка нави-панели, которая видна при сворачивании -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_01"><span class="glyphicon glyphicon-align-justify"/></button>
+        </div>
+
+        <!-- сворачивающая часть 1 нави-панели -->
+        <div class="collapse navbar-collapse" id="navbar_collapse_01">
+            <ul class="nav navbar-nav">
+                <li ng-class="{'active': currentTab == 'main'}"><a href="/">Главная</a></li>
+                <li ng-class="{'active': currentTab == 'practice'}"><a href="/practice">Практика</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</div>

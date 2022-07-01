@@ -1,0 +1,132 @@
+/* Colors */
+/* Sizes */
+/* Popup */
+/* Mixins
+.chart {
+  width: 100%;
+  height: 600px;
+}
+.chart-wrap {
+  width: 100%;
+  padding: 0 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.chart-title {
+  font-size: 18px;
+  margin: 0 0 20px 50px;
+}
+.chart-time-block {
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+.chart-time-block .date-input-wrap {
+  width: 85px;
+  display: inline-block;
+  position: relative;
+}
+.chart-time-block .date-input-wrap input[type="text"] {
+  height: 25px;
+  width: 100%;
+  padding-right: 15px;
+}
+.chart-time-block .date-input-wrap .fa {
+  position: absolute;
+  top: 6px;
+  right: 3px;
+}
+.chart-time-block .time-period-row {
+  margin-top: 10px;
+}
+.chart-time-block .time-period-row .time-period-link {
+  border-bottom: 1px dotted;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.chart-legend-block {
+  margin: 10px 0 20px 0;
+}
+.chart-legend-block .legend-color {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 1px solid #fff;
+  vertical-align: top;
+  margin-right: 2px;
+}
+.chart-legend-block .legend-color.stand-legend-color {
+  background: #d2e687;
+}
+.chart-legend-block .legend-color.not-stand-legend-color {
+  background: #9CBB3F;
+}
+.chart-legend-block .chb-skin {
+  vertical-align: top;
+}
+.chart-legend-block .legend-text {
+  font-size: 13px;
+  display: inline-block;
+  width: 150px;
+}
+.chart-legend-block .legend-row {
+  margin: 2px 0;
+  padding: 4px 0;
+}
+.chart-legend-block .legend-row.highlight {
+  background: #293746;
+  margin: 0 -20px;
+  padding: 4px 20px;
+  color: #fff;
+}
+.market-block {
+  margin-bottom: 50px;
+}
+.radio-toggle {
+  float: right;
+  margin-right: 30px;
+}
+.radio-toggle input {
+  display: none;
+}
+.radio-toggle label {
+  width: 40px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
+  font-weight: bold;
+  color: #777777;
+  font-family: Arial Black, Arial;
+  font-size: 12px;
+}
+.radio-toggle label.left {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+  margin-right: -5px;
+}
+.radio-toggle label.right {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.prod-type-block {
+  margin-bottom: 20px;
+}
+.chart-export-link {
+  color: #257C25;
+  cursor: pointer;
+  margin-left: 55px;
+  margin-top: 20px;
+  display: inline-block;
+}
+.chart-export-link .excel-icon {
+  display: inline-block;
+  width: 17px;
+  height: 20px;
+  background: url('../images/sprite.png') 0 -36px no-repeat;
+  vertical-align: middle;
+  margin-top: -4px;
+}
+*/

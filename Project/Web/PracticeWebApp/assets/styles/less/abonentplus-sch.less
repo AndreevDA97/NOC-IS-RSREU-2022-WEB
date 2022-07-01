@@ -1,0 +1,68 @@
+/* ПЕРЕМЕННЫЕ LESS ***************************************/
+
+@body-link: #800000;
+@body-link-hover: darken(@body-link, 20%);
+@body-link-disabled: lighten(@body-link, 20%);
+
+@second-accent-bg: #d4aaa0;
+@second-accent-bg-hover: darken(@second-accent-bg, 5%);
+@second-accent-brd: darken(@second-accent-bg, 8%);
+
+@second-accent-link: darken(@second-accent-bg, 50%);
+@second-accent-link-hover: darken(@second-accent-link, 20%);
+@second-accent-link-disabled: #999;
+@second-accent-text: darken(@second-accent-bg, 70%);
+
+/* datepicker */
+@datepicker-bg-hover: @second-accent-bg;
+@datepicker-bg-active: @second-accent-bg-hover;
+@datepicker-brd-active: @second-accent-brd;
+
+@main-accent-bg: #a40a17;
+@main-accent-bg-dark: #5c060d;
+@main-accent-bg-hover: darken(@main-accent-bg, 15%);
+@main-accent-brd: darken(@main-accent-bg, 15%);
+
+.et-main-accent-bg-grad {
+	background: -moz-linear-gradient(top, @main-accent-bg 0%, @main-accent-bg-dark 100%);
+	background: -webkit-linear-gradient(top, @main-accent-bg 0%, @main-accent-bg-dark 100%);
+	background: -o-linear-gradient(top, @main-accent-bg 0%, @main-accent-bg-dark 100%);
+	background: -ms-linear-gradient(top, @main-accent-bg 0%, @main-accent-bg-dark 100%);
+	background: linear-gradient(top, @main-accent-bg 0%, @main-accent-bg-dark 100%);
+}
+
+@main-accent-link-hover: #fff;
+@main-accent-link: darken(@main-accent-link-hover, 5%);
+@main-accent-link-dasibled: #999;
+@main-accent-text: darken(@main-accent-link-hover, 5%);
+
+@second-accent-bg-light: lighten(@second-accent-bg, 5%);
+@second-accent-brd-light: darken(@second-accent-bg-light, 10%);
+
+@body-title: #5c060d;
+
+@media print {
+    .main-logo-place {
+        position: static;
+    }
+    .top-bar-place {
+        position: static;
+    }
+    .breadcrumb {
+        position: static;
+    }
+    .navbar {
+        position: static;
+    }
+}
+
+.et-control-focus-shadow {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 3px rgba(150, 150, 150, .5);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 3px rgba(150, 150, 150, .5);
+}
+.et-main-accent-bg-grad-test {
+	background: -moz-repeating-linear-gradient(-45deg, @main-accent-bg, @main-accent-bg 25px, @main-accent-bg-dark 25px, @main-accent-bg-dark 50px) fixed;
+	background: -webkit-repeating-linear-gradient(-45deg, @main-accent-bg, @main-accent-bg 25px, @main-accent-bg-dark 25px, @main-accent-bg-dark 50px) fixed;
+	background: -o-repeating-linear-gradient(-45deg, @main-accent-bg, @main-accent-bg 25px, @main-accent-bg-dark 25px, @main-accent-bg-dark 50px) fixed;
+	background: repeating-linear-gradient(-45deg, @main-accent-bg, @main-accent-bg 25px, @main-accent-bg-dark 25px, @main-accent-bg-dark 50px) fixed;
+}

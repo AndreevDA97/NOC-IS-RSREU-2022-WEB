@@ -1,0 +1,23 @@
+﻿<div class="container">
+    <ul class="nav support-pills visible-xs">
+        <li ng-class="{'active': currentTab == 'about'}"><a href="/about">О проекте</a></li>
+        <li><a href="https://abonent.plus/product_07">Подробнее</a></li>
+        <!--<li ng-class="{'active': currentTab == 'help'}"><a href="#">Помощь</a></li>-->
+        <!--<li ng-class="{'active': currentTab == 'admin'}" ng-show="user && user.userInRole('OrganizationAdministrator')"><a href="/admin">Администрирование</a></li>-->
+        <li><a href="https://doc.abonent.plus/index.php/Претензионно_исковая_система">Документация</a></li>
+    </ul>
+    <!-- подвал -->
+    <div class="footer-place">
+        <ul class="nav footer-pills">
+            <li class="active"><a href="https://abonent.plus/product_03">Условия распространения</a></li>
+            <li class="active"><a href="https://abonent.plus/product_07">Регламент поддержки</a></li>
+            <li class="active"><a href="https://abonent.plus/contact_info">Контакты</a></li>
+        </ul>
+        <div class="copyright">
+            &copy; Абонент + (версия {{versionNo.VersionStr}}) {{versionNo.DatabaseStr}}
+            <span ng-show="$root.beta">
+                <br>Режим бета-тестирования интерфейса
+            </span>
+        </div>
+    </div>
+</div>
