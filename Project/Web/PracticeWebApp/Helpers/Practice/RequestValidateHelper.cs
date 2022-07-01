@@ -53,6 +53,24 @@ namespace PracticeWebApp.Helpers.Practice
             }
             return true;
         }
+        public bool ValidateById(int? streetId, out STREET streetOrm)
+        {
+            streetOrm = null;
+            if (!streetId.HasValue)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Не указан идентификатор абонента."));
+                return false;
+            }
+            streetOrm = db.STREET.SingleOrDefault(c => c.STREETCD == streetId);
+            if (streetOrm == null)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Указанный абонент не найден."));
+                return false;
+            }
+            return true;
+        }
         #endregion
     }
 }

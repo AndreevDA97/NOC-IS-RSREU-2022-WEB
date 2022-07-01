@@ -1,0 +1,78 @@
+﻿<div>
+    <dlg-street-edit data="street" action="streetAction" callback="refresh"></dlg-street-edit>
+    <confirm-dialog message="'Удалить выбранную запись? Продолжить?'" iddialog="'dlg-street-delete'" yescallback="deleteStreet"></confirm-dialog>
+
+    <div class="div-scroll-x" ng-class="{'col-sm-7': !filterCollapsed, 'col-sm-10': filterCollapsed}">
+        <h1>Улицы</h1>
+        <div class="row" ng-show="filterCollapsed">
+            <div class="col-sm-9">
+                <div class="panel panel-default panel-filter-tags">
+                    <div class="panel-body">
+                        Название улицы: <b>{{getModel.Name}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 hidden-xs">
+                <div class="panel panel-primary">
+                    <div class="panel-heading pointer-cursor" ng-click="filterCollapsed = !filterCollapsed" tabindex="0">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <h3 class="panel-title">Условия отбора</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div cg-busy="loadPromise">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-default" ng-click="addStreet()">
+                        <span class="glyphicon glyphicon-plus"></span> Добавить
+                    </button>
+                </div>
+                <div class="col-sm-8">
+                    <portal-paginator model="getModel" paginator-id="'pg-street-list-top'"></portal-paginator>
+                </div>
+            </div>
+            <datatable columns="columns" rows="streets" actions="actions" builtinordering="false"></datatable>
+            <portal-paginator model="getModel" paginator-id="'pg-street-list-buttom'"></portal-paginator>
+            <div ng-show="error" class="form-group font-small-danger">
+                {{error}}
+            </div>
+            <div ng-show="success" class="form-group font-small-success">
+                {{success}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3" ng-show="!filterCollapsed">
+        <h1 class="hidden-xs">&emsp;</h1>
+        <div class="panel panel-primary right-panel">
+            <div class="panel-heading pointer-cursor" ng-click="filterCollapsed = !filterCollapsed">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+                <h3 class="panel-title">Условия отбора</h3>
+            </div>
+            <div class="panel-body collapse in">
+                <form class="form" role="form">
+                    <div class="form-group">
+                        <label class="control-label">Название улицы:</label>
+                        <input type="text" class="form-control" ng-model="getModel.Name" placeholder="Подстрока улицы">
+                    </div>
+                    <div class="form-group-buttons">
+                        <button type="button" class="btn btn-primary" ng-click="refresh()">Применить</button>
+                        <button type="button" class="btn btn-default" ng-click="resetFilter()">Сбросить</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-3 visible-xs" ng-show="filterCollapsed">
+        <div class="panel panel-primary">
+            <div class="panel-heading pointer-cursor" ng-click="filterCollapsed = !filterCollapsed">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <h3 class="panel-title">Условия отбора</h3>
+            </div>
+        </div>
+    </div>
+</div>
