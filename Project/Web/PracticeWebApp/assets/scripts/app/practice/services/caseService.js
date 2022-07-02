@@ -16,13 +16,22 @@
             getAbonentValues: function () {
                 return $universalService.postRequest('./api/Practice/AbonentList4Select');
             },
-            saveAbonent: function (abonentId, abonentDto) {
+            saveStreet: function (abonentId, abonentDto) {
                 return $universalService.putRequest('./api/Practice/AbonentList/' + abonentId, abonentDto);
             },
             deleteAbonent: function (abonentId) {
                 return $universalService.deleteRequest('./api/Practice/AbonentList/' + abonentId);
             },
             // StreetListController
+            getStreets: function (model) {
+                return $universalService.postRequest('./api/Practice/StreetList', model);
+            },
+            saveStreet: function (streetId, streetDto) {
+                return $universalService.putRequest('./api/Practice/StreetList/' + streetId, streetDto);
+            },
+            deleteStreet: function (streetId) {
+                return $universalService.deleteRequest('./api/Practice/StreetList/' + streetId);
+            },
             getStreetValues: function () {
                 return $universalService.postRequest('./api/Practice/StreetList4Select');
             }
