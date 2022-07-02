@@ -12,7 +12,7 @@ namespace PracticeWebApp.Models.Practice
         public int Request { get; set; }
         public string AccountCD { get; set; }
 
-        public OrderDirection OrderByRequestId { get; set; }
+        public OrderDirection OrderByRequest { get; set; }
 
         public IQueryable<REQUEST> GetQuery(PaySystemDataBase db,
             IQueryable<REQUEST> query = null)
@@ -25,7 +25,7 @@ namespace PracticeWebApp.Models.Practice
 
             // Сортировка
             query = query
-                .OrderBy(item => item.REQUESTCD, OrderByRequestId);
+                .OrderBy(item => item.REQUESTCD, OrderByRequest);
             return query;
         }
     }

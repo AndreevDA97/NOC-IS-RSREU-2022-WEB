@@ -34,6 +34,19 @@
             },
             getStreetValues: function () {
                 return $universalService.postRequest('./api/Practice/StreetList4Select');
+            },
+            //RequestListController
+            getRequest: function (model) {
+                return $universalService.postRequest('./api/Practice/RequestList', model);
+            },
+            saveRequest: function (streetId, streetDto) {
+                return $universalService.putRequest('./api/Practice/RequestList/' + requestId, requestDto);
+            },
+            deleteRequest: function (streetId) {
+                return $universalService.deleteRequest('./api/Practice/RequestList/' + requestId);
+            },
+            getSRequestValues: function () {
+                return $universalService.postRequest('./api/Practice/RequestList4Select');
             }
         };
     }]);

@@ -93,6 +93,7 @@ namespace PracticeWebApp.Controllers.Practice
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
+                var list = db.ABONENT;
                 var values = db.STREET
                     .Select(s => new
                     {
