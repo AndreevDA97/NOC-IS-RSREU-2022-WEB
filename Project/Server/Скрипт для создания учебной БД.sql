@@ -325,7 +325,7 @@ UPDATE Paysumma SET PaySum=PaySum+600 WHERE Servicecd=2;
 UPDATE Paysumma SET Paysum=Paysum+2000 WHERE Servicecd=3;
 UPDATE Paysumma SET Paysum=Paysum-300 WHERE Servicecd=4;
 COMMIT TRANSACTION;
-BEGIN TRANSACTION
+--BEGIN TRANSACTION
 --
 -- Описание для триггера UC_ABONENT_NACHISLSUMMA
 --
