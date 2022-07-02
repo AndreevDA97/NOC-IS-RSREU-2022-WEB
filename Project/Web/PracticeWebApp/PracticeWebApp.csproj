@@ -246,11 +246,9 @@
     <Content Include="assets\scripts\app\framework\passwordService.js" />
     <Content Include="assets\scripts\app\framework\portalPaginator.js" />
     <Content Include="assets\scripts\app\framework\_commonServices.js" />
-    <Content Include="assets\scripts\app\practice\directives\request-list.html" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-street-edit.html" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlgStreetEdit.js" />
     <Content Include="assets\scripts\app\practice\directives\street-list.html" />
-    <Content Include="assets\scripts\app\practice\directives\requestList.js" />
     <Content Include="assets\scripts\app\practice\directives\streetList.js" />
     <Content Include="assets\scripts\app\practice\directives\general-info.html" />
     <Content Include="assets\scripts\app\practice\directives\generalInfo.js" />

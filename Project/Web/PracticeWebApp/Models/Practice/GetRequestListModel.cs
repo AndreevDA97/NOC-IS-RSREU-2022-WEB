@@ -9,6 +9,7 @@ namespace PracticeWebApp.Models.Practice
 {
     public class GetRequestListModel : PaginationModel<RequestDto>
     {
+        public int Request { get; set; }
         public string AccountCD { get; set; }
 
         public OrderDirection OrderByRequestId { get; set; }
