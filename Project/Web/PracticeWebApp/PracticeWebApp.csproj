@@ -363,6 +363,7 @@
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Common\VersionNoController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\Practice\RequestListController.cs" />
     <Compile Include="Controllers\Practice\StreetListController.cs" />
     <Compile Include="Controllers\Practice\AbonentListController.cs" />
     <Compile Include="Dto\Practice\RequestDto.cs" />
