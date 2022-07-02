@@ -1,3 +1,12 @@
+--USE MASTER
+--GO
+
+--CREATE DATABASE AbonentPlus
+--GO
+
+--use AbonentPlus
+--GO
+
 *****************************************************************/
 /* Tables */
 /*****************************************************************/
@@ -316,6 +325,7 @@ UPDATE NACHISLSUMMA
 SET accountcd = :new.accountcd
 WHERE accountcd = :old.accountcd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_ABONENT_PAYSUMMA
@@ -330,6 +340,7 @@ UPDATE PAYSUMMA
 SET accountcd = :new.accountcd
 WHERE accountcd = :old.accountcd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_ABONENT_REQUEST
@@ -344,6 +355,7 @@ UPDATE REQUEST
 SET accountcd = :new.accountcd
 WHERE accountcd = :old.accountcd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_DISREPAIR_REQUEST
@@ -358,6 +370,7 @@ UPDATE REQUEST
 SET failurecd = :new.failurecd
 WHERE failurecd = :old.failurecd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_EXECUTOR_REQUEST
@@ -372,6 +385,7 @@ UPDATE REQUEST
 SET executorcd = :new.executorcd
 WHERE executorcd = :old.executorcd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_SERVICES_NACHISLSUMMA
@@ -386,6 +400,7 @@ UPDATE NACHISLSUMMA
 SET servicecd = :new.servicecd
 WHERE servicecd = :old.servicecd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_SERVICES_PAYSUMMA
@@ -400,6 +415,7 @@ UPDATE PAYSUMMA
 SET servicecd = :new.servicecd
 WHERE servicecd = :old.servicecd;
 END;
+GO
 /
 --
 -- Описание для триггера UC_STREET_ABONENT
@@ -414,6 +430,7 @@ UPDATE ABONENT
 SET streetcd = :new.streetcd
 WHERE streetcd = :old.streetcd;
 END;
+GO
 /
 --
 -- Описание для триггера TD_ABONENT
@@ -443,6 +460,7 @@ THEN
 RAISE_APPLICATION_ERROR(-20001, 'Ограничение удаления записи из родительской таблицы');
 END IF;
 END;
+GO
 /
 --
 -- Описание для триггера TD_SERVICES
@@ -472,5 +490,6 @@ THEN
 RAISE_APPLICATION_ERROR(-20001, 'Ограничение удаления записи из родительской таблицы');
 END IF;
 END;
+GO
 /
 COMMIT WORK;
