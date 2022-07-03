@@ -108,7 +108,7 @@
                     };
 
                     $scope.resetFilter = function () {
-                        $scope.getModel.Name = null;
+                        $scope.getModel.AccountCD = null;
                         setTimeout(function () {
                             $('#getmodel-request').val('default');
                             $('.selectpicker').selectpicker('refresh');
