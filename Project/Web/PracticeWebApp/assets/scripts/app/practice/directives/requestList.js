@@ -57,7 +57,7 @@
                     };
 
                     $scope.resetOrder = function (column) {
-                        $scope.getModel.OrderByName = 0;
+                        $scope.getModel.OrderByRequest = 0;
                         $scope.getModel.PageNumber = 1;
                         for (var i = 0; i < $scope.columns.length; i++) {
                             if ($scope.columns[i].orderType != undefined && $scope.columns[i] != column)
@@ -72,7 +72,7 @@
                         if (newValue != oldValue) {
                             $scope.stopRefreshList = true;
                             $scope.resetOrder(column);
-                            $scope.getModel.OrderByName = newValue;
+                            $scope.getModel.OrderByRequest = newValue;
                             $scope.refresh();
                         }
                     }
