@@ -25,16 +25,16 @@
         <div cg-busy="loadPromise">
             <div class="row">
                 <div class="col-sm-4">
-                    <button class="btn btn-default" ng-click="addAbonent()">
+                    <button class="btn btn-default" ng-click="addRequest()">
                         <span class="glyphicon glyphicon-plus"></span> Добавить
                     </button>
                 </div>
                 <div class="col-sm-8">
-                    <portal-paginator model="getModel" paginator-id="'pg-abonent-list-top'"></portal-paginator>
+                    <portal-paginator model="getModel" paginator-id="'pg-request-list-top'"></portal-paginator>
                 </div>
             </div>
-            <datatable columns="columns" rows="abonents" actions="actions" builtinordering="false"></datatable>
-            <portal-paginator model="getModel" paginator-id="'pg-abonent-list-buttom'"></portal-paginator>
+            <datatable columns="columns" rows="requests" actions="actions" builtinordering="false"></datatable>
+            <portal-paginator model="getModel" paginator-id="'pg-request-list-buttom'"></portal-paginator>
             <div ng-show="error" class="form-group font-small-danger">
                 {{error}}
             </div>
@@ -55,14 +55,7 @@
                 <form class="form" role="form">
                     <div class="form-group">
                         <label class="control-label">ФИО:</label>
-                        <input type="text" class="form-control" ng-model="getModel.Fio" placeholder="Подстрока ФИО">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Улица:</label>
-                        <select id="getmodel-street" class="form-control selectpicker" title='Выберите улицу...' data-width="100%" ng-model="getModel.StreetId">
-                            <option></option>
-                            <option ng-repeat="item in streets" value="{{item.Id}}">{{item.Name}}</option>
-                        </select>
+                        <input type="text" class="form-control" ng-model="getModel.AccountCD" placeholder="Подстрока ФИО">
                     </div>
                     <div class="form-group-buttons">
                         <button type="button" class="btn btn-primary" ng-click="refresh()">Применить</button>

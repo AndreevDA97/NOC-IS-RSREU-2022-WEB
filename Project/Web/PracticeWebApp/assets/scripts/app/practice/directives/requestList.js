@@ -22,7 +22,12 @@
 
                     $scope.columns = [
                         { name: 'Id', caption: 'Код', type: 0, orderType: 0 },
-                        { name: 'Name', caption: 'Улица', type: 0 },
+                        { name: 'AccountId', caption: 'Лицевой счет абонента', type: 0 },
+                        { name: 'ExecutorId', caption: 'Код выполнителя', type: 0 },
+                        { name: 'FailureId', caption: 'Поломка', type: 0 },
+                        { name: 'IncomingDate', caption: 'Дата поступления', type: 0 },
+                        { name: 'ExecutionDate', caption: 'Дата выполнения', type: 0 },
+                        { name: 'Executed', caption: 'Выполнение', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -89,7 +94,7 @@
 
                         $scope.loadPromise.promise = caseService.getRequest($scope.getModel)
                             .success(function (data) {
-                                $scope.request = data.Data;
+                                $scope.requests = data.Data;
                                 $scope.getModel.TotalCount = data.TotalCount;
                                 $scope.updateLocalFields();
                                 $scope.stopRefreshList = false;
