@@ -117,7 +117,7 @@
                     };
 
                     $scope.$watchCollection('[getModel.PageSize, getModel.PageNumber]', function (newValues, oldValues) {
-                        if ($scope.request == null) return;
+                        if ($scope.requests == null) return;
                         $scope.refresh();
                     });
 
