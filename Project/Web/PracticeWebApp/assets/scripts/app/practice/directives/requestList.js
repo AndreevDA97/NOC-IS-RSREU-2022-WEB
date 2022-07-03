@@ -121,9 +121,33 @@
                         $scope.refresh();
                     });
 
+                    $scope.getAbonents = function () {
+                        $scope.error = null;
+                        return caseService.getAbonentValues()
+                            .success(function (data) {
+                                $scope.abonents = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getExecutors = function () {
+                        $scope.error = null;
+                        return caseService.getExecutorValues()
+                            .success(function (data) {
+                                $scope.executors = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
                     $scope.$watch('currentPage', function (newValue, oldValue) {
                         if (newValue == 'request-list') {
                             $q.all([
+                                $scope.getAbonents(),
+                                $scope.getExecutors()
                             ]).then(function () {
                                 $scope.refresh();
                             });

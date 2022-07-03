@@ -246,7 +246,9 @@
     <Content Include="assets\scripts\app\framework\passwordService.js" />
     <Content Include="assets\scripts\app\framework\portalPaginator.js" />
     <Content Include="assets\scripts\app\framework\_commonServices.js" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-request-edit.html" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-street-edit.html" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlgRequestEdit.js" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlgStreetEdit.js" />
     <Content Include="assets\scripts\app\practice\directives\request-list.html" />
     <Content Include="assets\scripts\app\practice\directives\requestList.js" />
@@ -363,7 +365,9 @@
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Common\VersionNoController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\Practice\DisrepairListController .cs" />
     <Compile Include="Controllers\Practice\RequestListController.cs" />
+    <Compile Include="Controllers\Practice\ExecutorListController.cs" />
     <Compile Include="Controllers\Practice\StreetListController.cs" />
     <Compile Include="Controllers\Practice\AbonentListController.cs" />
     <Compile Include="Dto\Practice\RequestDto.cs" />
