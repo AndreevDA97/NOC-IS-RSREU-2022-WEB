@@ -1,8 +1,8 @@
 ﻿angular.module('app.directives')
-    .directive('streetList', ['commonFunctions', '$q', '$filter', 'caseService', 'organizationsService',
+    .directive('requestList', ['commonFunctions', '$q', '$filter', 'caseService', 'organizationsService',
         function (commonFunctions, $q, $filter, caseService, organizationsService) {
             return {
-                templateUrl: './assets/scripts/app/practice/directives/street-list.html',
+                templateUrl: './assets/scripts/app/practice/directives/request-list.html',
                 restrict: 'E',
                 replace: true,
                 scope: {
@@ -21,23 +21,27 @@
                     commonFunctions.refreshEditorStyles();
 
                     $scope.columns = [
-                        { name: 'Id', caption: 'Код', type: 0, orderType: 0 },
-                        { name: 'Name', caption: 'Улица', type: 0 },
+                        { name: 'AccountId', caption: 'Лицевой счет', type: 0, orderType: 0 },
+                        { name: 'ExecutorId', caption: 'ExecutorId', type: 0 },
+                        { name: 'FailureId', caption: 'FailureId', type: 0 },
+                        { name: 'IncomingDate', caption: 'IncomingDate', type: 0 },
+                        { name: 'ExecutionDate', caption: 'ExecutionDate', type: 0 },
+                        { name: 'Executed', caption: 'Executed', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
                         /*0*/startEdit = function (row) {
-                            $scope.street = angular.copy(row);
-                            $scope.streetAction = 'edit';
-                            $('#dlg-street-edit').modal('show');
+                            $scope.request = angular.copy(row);
+                            $scope.requestAction = 'edit';
+                            $('#dlg-request-edit').modal('show');
                         },
                         /*1*/startDelete = function (row) {
-                            $scope.street = row;
-                            $('#dlg-street-delete').modal('show');
+                            $scope.request = row;
+                            $('#dlg-request-delete').modal('show');
                         },
                     ];
-                    $scope.deleteStreet = function () {
-                        caseService.deleteStreet($scope.street.Id)
+                    $scope.deleteRequest = function () {
+                        caseService.deleteRequest($scope.request.Id)
                             .success(function () {
                                 $scope.refresh();
                             })
@@ -45,14 +49,14 @@
                                 $scope.error = 'Ошибка удаления: ' + error.Message;
                             });
                     };
-                    $scope.addStreet = function () {
-                        $scope.street = {};
-                        $scope.streetAction = 'add';
-                        $('#dlg-street-edit').modal('show');
+                    $scope.addRequest = function () {
+                        $scope.request = {};
+                        $scope.requestAction = 'add';
+                        $('#dlg-request-edit').modal('show');
                     };
 
                     $scope.resetOrder = function (column) {
-                        $scope.getModel.OrderByName = 0;
+                        $scope.getModel.OrderByAccountId = 0;
                         $scope.getModel.PageNumber = 1;
                         for (var i = 0; i < $scope.columns.length; i++) {
                             if ($scope.columns[i].orderType != undefined && $scope.columns[i] != column)
@@ -67,29 +71,30 @@
                         if (newValue != oldValue) {
                             $scope.stopRefreshList = true;
                             $scope.resetOrder(column);
-                            $scope.getModel.OrderByName = newValue;
+                            $scope.getModel.OrderByAccountId = newValue;
                             $scope.refresh();
                         }
                     }
 
                     $scope.updateLocalFields = function () {
-                        if ($scope.streets == null) return;
-                        for (var i = 0; i < $scope.streets.length; i++) {
-                            var row = $scope.streets[i];
+                        if ($scope.requests == null) return;
+                        for (var i = 0; i < $scope.requests.length; i++) {
+                            var row = $scope.requests[i];
+                            row.IsPrimaryHtml = '<div><input type="checkbox" ng-checked="' + row.IsPrimary + '" disabled></div>';
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';
                             row.actions = actionRef;
                         }
                     };
-                    $scope.loadPromise = { message: 'Загрузка улиц...' };
+                    $scope.loadPromise = { message: 'Загрузка запросов...' };
                     $scope.refresh = function () {
-                        $scope.streets = null;
+                        $scope.requests = null;
                         $scope.error = null;
 
-                        $scope.loadPromise.promise = caseService.getStreets($scope.getModel)
+                        $scope.loadPromise.promise = caseService.getRequests($scope.getModel)
                             .success(function (data) {
-                                $scope.streets = data.Data;
+                                $scope.requests = data.Data;
                                 $scope.getModel.TotalCount = data.TotalCount;
                                 $scope.updateLocalFields();
                                 $scope.stopRefreshList = false;
@@ -103,7 +108,8 @@
                     };
 
                     $scope.resetFilter = function () {
-                        $scope.getModel.Name = null;
+                        $scope.getModel.AccountId = null;
+                        $scope.getModel.StreetId = null;
                         setTimeout(function () {
                             $('#getmodel-street').val('default');
                             $('.selectpicker').selectpicker('refresh');
@@ -112,12 +118,12 @@
                     };
 
                     $scope.$watchCollection('[getModel.PageSize, getModel.PageNumber]', function (newValues, oldValues) {
-                        if ($scope.streets == null) return;
+                        if ($scope.requests == null) return;
                         $scope.refresh();
                     });
 
                     $scope.$watch('currentPage', function (newValue, oldValue) {
-                        if (newValue == 'street-list') {
+                        if (newValue == 'request-list') {
                             $q.all([
                             ]).then(function () {
                                 $scope.refresh();

@@ -1,0 +1,114 @@
+﻿<div>
+    <div class="modal fade" id="{{iddialog}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <style>
+                #{{iddialog}} #request .bootstrap-select {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <div class="modal-content" cg-busy="loadPromise">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Запрос</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert" ng-show="showWarning">
+                        Не все поля заполнены!
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Лицевой счет</label>
+                        <select class="form-control selectpicker" title='Выберите лицевой счет' data-width="100%" ng-model="request.AccountId" id="{{iddialog}}AccountId">
+                            <option></option>
+                            <option ng-repeat="option in abonents" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                        <!--<input type="text" class="form-control" ng-model="request.AccountId" placeholder="Введите лицевой счет...">-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">ExecutorId</label>
+                        <input type="text" class="form-control" ng-model="request.ExecutorId" placeholder="Введите ExecutorId...">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">FailureId</label>
+                        <input type="text" class="form-control" ng-model="request.FailureId" placeholder="Введите FailureId...">
+                    </div>
+                    <div>
+                        <label class="control-label">IncomingDate:</label>
+                        <input type="date" class="form-control" ng-model="request.IncomingDate" placeholder="Введите IncomingDate...">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">ExecutionDate</label>
+                        <input type="date" class="form-control" ng-model="request.ExecutionDate" placeholder="Введите ExecutionDate...">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Executed</label>
+                        <input type="number" min="0" max="1" class="form-control" ng-model="request.Executed" placeholder="Введите Executed...">
+                    </div>
+                    <!--<hr class="form-group" style="margin-top:0">
+                    <div class="div-collapse-light">
+                        <div class="div-collapse-head pointer-cursor" data-toggle="collapse" data-target="#requestpays">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                            <h3>Платежи</h3>
+                        </div>
+                        <div id="requestpays" class="div-collapse-body collapse">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td style="width:175px">Тип соответствия</td>
+                                        <td>Внешнее значение</td>
+                                        <td>Значение системы</td>
+                                        <td style="width:30px">&nbsp;</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="row in request.Pays">
+                                        <td>
+                                            <div>
+                                                <select class="form-control selectpicker" title='Выберите услугу' data-width="100%" ng-model="row.ServiceId" id="{{iddialog}}ServiceId{{$index}}">
+                                                    <option ng-repeat="option in services" value="{{option.Id}}">{{option.Name}}</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control curency" placeholder="значение" ng-model="row.ExtValue">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control curency" placeholder="значение" ng-model="row.OwnValue">
+                                        </td>
+                                        <td style="vertical-align:middle">
+                                            <button type="button" title="Удалить запись" class="btn btn-default btn-xs" ng-click="deletePay(row)">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePay()">
+                                                Очистить записи
+                                            </button>
+                                        </td>
+                                        <td colspan="5">
+                                            <button type="button" class="btn btn-default btn-sm pull-right" ng-click="addPay()">
+                                                Добавить запись
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>-->
+                    <div ng-show="error" class="form-group font-small-danger">
+                        {{error}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="submit()">
+                        {{action == 'edit' ? 'Отредактировать запись' : 'Добавить запись'}}
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
