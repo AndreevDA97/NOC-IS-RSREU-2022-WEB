@@ -78,9 +78,9 @@
                     }
 
                     $scope.updateLocalFields = function () {
-                        if ($scope.request == null) return;
-                        for (var i = 0; i < $scope.request.length; i++) {
-                            var row = $scope.request[i];
+                        if ($scope.requests == null) return;
+                        for (var i = 0; i < $scope.requests.length; i++) {
+                            var row = $scope.requests[i];
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';
@@ -89,7 +89,7 @@
                     };
                     $scope.loadPromise = { message: 'Загрузка заявок...' };
                     $scope.refresh = function () {
-                        $scope.request = null;
+                        $scope.requests = null;
                         $scope.error = null;
 
                         $scope.loadPromise.promise = caseService.getRequest($scope.getModel)
