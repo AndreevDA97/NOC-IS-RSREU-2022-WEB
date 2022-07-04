@@ -35,7 +35,7 @@ namespace PracticeWebApp.Helpers.Practice
         }
 
         #region Фильтрация запросов
-        public bool ValidateById(int? abonentId, out ABONENT abonentOrm)
+        public bool ValidateAbonentById(int? abonentId, out ABONENT abonentOrm)
         {
             abonentOrm = null;
             if (!abonentId.HasValue)
@@ -49,6 +49,25 @@ namespace PracticeWebApp.Helpers.Practice
             {
                 Result = Request.CreateResponse(HttpStatusCode.BadRequest,
                             new WebError("Указанный абонент не найден."));
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidateRequestById(int? requestId, out REQUEST requestOrm)
+        {
+            requestOrm = null;
+            if (!requestId.HasValue)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Не указан идентификатор заявки."));
+                return false;
+            }
+            requestOrm = db.REQUEST.SingleOrDefault(c => c.REQUESTCD == requestId);
+            if (requestOrm == null)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Указанная заявка не найден."));
                 return false;
             }
             return true;

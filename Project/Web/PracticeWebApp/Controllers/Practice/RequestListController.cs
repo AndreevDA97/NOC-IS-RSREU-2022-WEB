@@ -13,7 +13,7 @@ using System.Web.Http;
 namespace PracticeWebApp.Controllers.Practice
 {
     [RoutePrefix("api/Practice")]
-    public class AbonentListController : ApiController
+    public class RequestListController : ApiController
     {
         /// <summary>
         /// Заполняет модель данными на основе её параметров и изменяет её параметры
@@ -21,8 +21,8 @@ namespace PracticeWebApp.Controllers.Practice
         /// <param name="model">Модель</param>
         /// <returns>Модель с данным и изменёнными парметрами</returns>
         [HttpPost]
-        [Route("AbonentList")]
-        public GetAbonentListModel Get(GetAbonentListModel model)
+        [Route("RequestList")]
+        public GetRequestListModel Get(GetRequestListModel model)
         {
             using (var db = DataBase.GetNew())
             {
@@ -31,7 +31,7 @@ namespace PracticeWebApp.Controllers.Practice
                 // Выполнение запроса
                 model.TotalCount = query.Count();
                 model.Data = query.Pagination(model)
-                    .Select(AbonentDto.Map)
+                    .Select(RequestDto.Map)
                     .ToList();
             }
             return model;
@@ -40,38 +40,38 @@ namespace PracticeWebApp.Controllers.Practice
         /// <summary>
         /// Обновляет запись абонента на основе входых данных
         /// </summary>
-        /// <param name="abonentId">Id обновляемого абонента</param>
-        /// <param name="abonentDto">Данные, на основе которых происхот обновление самой записи</param>
+        /// <param name="requestId">Id обновляемого абонента</param>
+        /// <param name="requestDto">Данные, на основе которых происхот обновление самой записи</param>
         /// <returns>Http ответ, сообщающий о результате обновления</returns>
         [HttpPut]
-        [Route("AbonentList/{abonentId}")]
-        public HttpResponseMessage Put(int? abonentId, [FromBody]AbonentDto abonentDto)
+        [Route("RequestList/{requestId}")]
+        public HttpResponseMessage Put(int? requestId, [FromBody]RequestDto requestDto)
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
                 var helper = new RequestValidateHelper(Request, ref result, db);
 
-                if (abonentId.HasValue) // редактирование
+                if (requestId.HasValue) // редактирование
                 {
-                    if (!helper.ValidateAbonentById(abonentId, out ABONENT abonentOrm))
+                    if (!helper.ValidateRequestById(requestId, out REQUEST requestOrm))
                         return result;
 
-                    abonentDto.ToOrm(abonentOrm);
+                    requestDto.ToOrm(requestOrm);
                     db.SubmitChanges();
 
                     result = Request.CreateResponse(HttpStatusCode.OK);
                 }
                 else // добавление
                 {
-                    var errorMessage = abonentDto.IsValidate();
+                    var errorMessage = requestDto.IsValidate();
                     if (!string.IsNullOrEmpty(errorMessage))
 					{
                         result = Request.CreateResponse(HttpStatusCode.BadRequest, new WebError(errorMessage));
                         return result;
                     }
-                    var abonentOrm = abonentDto.ToOrm(null);
-                    db.ABONENT.InsertOnSubmit(abonentOrm);
+                    var requestOrm = requestDto.ToOrm(null);
+                    db.REQUEST.InsertOnSubmit(requestOrm);
                     db.SubmitChanges();
 
                     result = Request.CreateResponse(HttpStatusCode.OK);
@@ -83,20 +83,20 @@ namespace PracticeWebApp.Controllers.Practice
         /// <summary>
         /// Удаляет абонента по Id
         /// </summary>
-        /// <param name="abonentId">Id абонента, которого нужно удалить</param>
+        /// <param name="requestId">Id абонента, которого нужно удалить</param>
         /// <returns>Результат удаления</returns>
         [HttpDelete]
-        [Route("AbonentList/{abonentId}")]
-        public HttpResponseMessage Delete(int? abonentId)
+        [Route("RequestList/{requestId}")]
+        public HttpResponseMessage Delete(int? requestId)
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
                 var helper = new RequestValidateHelper(Request, ref result, db);
-                if (!helper.ValidateAbonentById(abonentId, out ABONENT abonentOrm))
+                if (!helper.ValidateRequestById(requestId, out REQUEST requestOrm))
                     return result;
 
-                db.ABONENT.DeleteOnSubmit(abonentOrm);
+                db.REQUEST.DeleteOnSubmit(requestOrm);
                 db.SubmitChanges();
 
                 result = Request.CreateResponse(HttpStatusCode.OK);
@@ -104,22 +104,20 @@ namespace PracticeWebApp.Controllers.Practice
             return result;
         }
 
-
         [HttpPost]
-        [Route("AbonentList4Select")]
+        [Route("RequestList4Select")]
         public HttpResponseMessage Get()
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
-                var model = new GetAbonentListModel();
+                var model = new GetRequestListModel();
                 var query = model.GetQuery(db);
                 var values = query
-                    .OrderByDescending(a => a.ACCOUNTCD)
+                    .OrderByDescending(a => a.REQUESTCD)
                     .Select(a => new
-                    { 
-                        Id = a.ACCOUNTCD,
-                        Name = a.Fio
+                    {
+                        Id = a.REQUESTCD
                     })
                     .ToList();
 

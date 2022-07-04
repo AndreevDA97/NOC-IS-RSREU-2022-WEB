@@ -25,6 +25,19 @@
             // StreetListController
             getStreetValues: function () {
                 return $universalService.postRequest('./api/Practice/StreetList4Select');
-            }
+            },
+
+            getRequests: function (model) {
+                return $universalService.postRequest('./api/Practice/RequestList', model);
+            },
+            getRequestValues: function () {
+                return $universalService.postRequest('./api/Practice/RequestList4Select');
+            },
+            saveRequest: function (requestId, requestDto) {
+                return $universalService.putRequest('./api/Practice/RequestList/' + requestId, requestDto);
+            },
+            deleteRequest: function (requestId) {
+                return $universalService.deleteRequest('./api/Practice/RequestList/' + requestId);
+            },
         };
     }]);
