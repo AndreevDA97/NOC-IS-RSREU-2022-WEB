@@ -16,7 +16,7 @@ namespace PracticeWebApp.Controllers.Practice
     public class RequestListController : ApiController
     {
         /// <summary>
-        /// Получение списка абонентов, отфильтрованных по имени и улице
+        /// Получение списка заявок, отфильтрованных по имени и улице
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

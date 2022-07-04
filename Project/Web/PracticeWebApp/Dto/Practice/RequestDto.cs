@@ -18,9 +18,9 @@ namespace PracticeWebApp.Dto.Practice
 		public string AbonentId { get; set; }
 		public int? ExecutorId { get; set; }
 		public int? FailureId { get; set; }
-        public DateTime IncomingDate { get; set; }
-        public DateTime ExecutionDate { get; set; }
-        public bool Executed { get; set; }
+        public DateTime? IncomingDate { get; set; }
+        public DateTime? ExecutionDate { get; set; }
+        public bool? Executed { get; set; }
 
         public static RequestDto Map(REQUEST itemOrm)
 		{
@@ -44,7 +44,7 @@ namespace PracticeWebApp.Dto.Practice
 			itemOrm.ACCOUNTCD = AbonentId;
 			itemOrm.EXECUTORCD = ExecutorId;
 			itemOrm.FAILURECD = FailureId;
-			itemOrm.INCOMINGDATE = IncomingDate;
+			itemOrm.INCOMINGDATE = IncomingDate ?? DateTime.Now; // What?
 			itemOrm.EXECUTIONDATE = ExecutionDate;
 			return itemOrm;
 		}
