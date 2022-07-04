@@ -27,7 +27,7 @@
                         { name: 'FailrueId', caption: 'Номер неполадки', type: 0 },
                         { name: 'IncommingDate', caption: 'Дата поступления заявки', type: 0 },
                         { name: 'ExecutionDate', caption: 'Дата исполения заявки', type: 0 },
-                        { name: 'Executed', caption: 'Выполнение', type: 0 },
+                        { name: 'Executed', caption: 'Выполнение', type: 1 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -83,9 +83,12 @@
                             var row = $scope.requests[i];
                             row.IsPrimaryHtml = '<div><input type="checkbox" ng-checked="' + row.IsPrimary + '" disabled></div>';
                             var actionRef = '';
+                            var checkboxRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';
                             row.actions = actionRef;
+                            checkboxRef += '<div><input type="checkbox" ng-checked="' + row.Executed + '" disabled></div>';
+                            row.Executed = checkboxRef;
                         }
                     };
                     $scope.loadPromise = { message: 'Загрузка заявок...' };

@@ -18,8 +18,6 @@
                     $scope.$watch('data', function (newValue, oldValue) {
                         if (!newValue) return;
                         $scope.request = $scope.data;
-                        $scope.request.IncommingDate = new Date($scope.data.IncommingDate);
-                        $scope.request.ExecutionDate = new Date($scope.data.ExecutionDate);
                         if (!$scope.request.Pays)
                             $scope.request.Pays = [];
                         $scope.loadPromise = { message: 'Пожалуйста подождите...' };

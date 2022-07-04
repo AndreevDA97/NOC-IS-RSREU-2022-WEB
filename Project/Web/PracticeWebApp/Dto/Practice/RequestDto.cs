@@ -14,7 +14,7 @@ namespace PracticeWebApp.Dto.Practice
         public int? FailrueId { get; set; }
         public DateTime IncommingDate { get; set; }
         public DateTime? ExecutionDate { get; set; }
-        public short? Executed { get; set; }
+        public bool Executed { get; set; }
 
 		public static RequestDto Map(REQUEST itemOrm)
 		{
@@ -27,7 +27,7 @@ namespace PracticeWebApp.Dto.Practice
 				FailrueId = itemOrm.FAILURECD,
 				IncommingDate = itemOrm.INCOMINGDATE,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
-				Executed = itemOrm.EXECUTED
+				Executed = Convert.ToBoolean(itemOrm.EXECUTED)
 			};
 			return result;
 		}
@@ -41,7 +41,7 @@ namespace PracticeWebApp.Dto.Practice
 			itemOrm.FAILURECD = FailrueId;
 			itemOrm.INCOMINGDATE = IncommingDate;
 			itemOrm.EXECUTIONDATE = ExecutionDate;
-			itemOrm.EXECUTED = Executed;
+			itemOrm.EXECUTED = Convert.ToInt16(Executed);
 			return itemOrm;
 		}
 
@@ -62,10 +62,6 @@ namespace PracticeWebApp.Dto.Practice
 			{
 				errorMessage = "Исправление не может произойти до поступлния заявки!";
 				return errorMessage;
-			}
-			if (Executed == null)
-			{
-				Executed = 0;
 			}
 			return errorMessage;
 		}
