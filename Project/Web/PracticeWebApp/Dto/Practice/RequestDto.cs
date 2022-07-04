@@ -17,9 +17,12 @@ namespace PracticeWebApp.Dto.Practice
         public int? FailureId { get; set; }
         public DateTime IncomingDate { get; set; }
         public DateTime? ExecutionDate { get; set; }
-        public short? Executed { get; set; }
+        public bool? Executed { get; set; }
 
-		public static RequestDto Map(REQUEST itemOrm)
+        //дополнительные поля
+        public string ExecutorFio { get; set; }
+
+        public static RequestDto Map(REQUEST itemOrm)
 		{
 			if (itemOrm == null) return null;
 			var result = new RequestDto
@@ -30,7 +33,8 @@ namespace PracticeWebApp.Dto.Practice
 				FailureId = itemOrm.FAILURECD,
 				IncomingDate = itemOrm.INCOMINGDATE,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
-				Executed = itemOrm.EXECUTED
+				Executed = Convert.ToBoolean(itemOrm.EXECUTED),
+				ExecutorFio = itemOrm.EXECUTOR?.Fio
 			};
 			return result;
 		}
@@ -44,7 +48,7 @@ namespace PracticeWebApp.Dto.Practice
 			itemOrm.FAILURECD = FailureId;
 			itemOrm.INCOMINGDATE = IncomingDate;
 			itemOrm.EXECUTIONDATE = ExecutionDate;
-			itemOrm.EXECUTED = Executed;
+			itemOrm.EXECUTED = Convert.ToInt16(Executed);
 			return itemOrm;
 		}
 
@@ -56,12 +60,12 @@ namespace PracticeWebApp.Dto.Practice
 				errorMessage = "Не задано ФИО!";
 				return errorMessage;
 			}
-			//if (string.IsNullOrWhiteSpace(IncomingDate))
-			//{
-			//	errorMessage = "Не задана дата поступления заявки!";
-			//	return errorMessage;
-			//}
-			return errorMessage;
+            if (IncomingDate == default(DateTime))
+            {
+                errorMessage = "Не задана дата поступления заявки!";
+                return errorMessage;
+            }
+            return errorMessage;
 		}
 	}
 }

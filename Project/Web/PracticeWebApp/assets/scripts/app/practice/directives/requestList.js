@@ -23,7 +23,7 @@
                     $scope.columns = [
                         { name: 'Id', caption: 'Код', type: 0, orderType: 0 },
                         { name: 'AccountId', caption: 'Лицевой счет абонента', type: 0 },
-                        { name: 'ExecutorId', caption: 'Код выполнителя', type: 0 },
+                        { name: 'ExecutorFio', caption: 'Выполнитель', type: 0 },
                         { name: 'FailureId', caption: 'Поломка', type: 0 },
                         { name: 'IncomingDate', caption: 'Дата поступления', type: 0 },
                         { name: 'ExecutionDate', caption: 'Дата выполнения', type: 0 },

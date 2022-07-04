@@ -19,12 +19,6 @@
                         if (!newValue) return;
                         $scope.request = $scope.data;
                         $scope.loadPromise = { message: 'Пожалуйста подождите...' };
-                        if ($scope.request.Executed == 1) {
-                            $scope.request.Executed = true;
-                        }
-                        else {
-                            $scope.request.Executed = false;
-                        };
                         $scope.loadPromise.promise = $q.all([
                             $scope.getAbonents(),
                             $scope.getExecutors(),
@@ -122,13 +116,6 @@
 
                     $scope.submit = function () {
                         $scope.error = null;
-
-                        if ($scope.request.Executed) {
-                            $scope.request.Executed = 1;
-                        }
-                        else {
-                            $scope.request.Executed = 0;
-                        };
 
                         var requestDto = $scope.request;
                         var requestId = $scope.action == 'edit' ? requestDto.Id : null;
