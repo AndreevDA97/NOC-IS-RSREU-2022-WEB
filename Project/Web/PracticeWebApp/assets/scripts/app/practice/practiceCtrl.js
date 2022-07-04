@@ -20,8 +20,7 @@
         $scope.menuLinks.push({
             href: '', caption: 'Справочники', name: 'nsiGroup', subItems: [
                 { href: '', caption: 'Абоненты', ngclick: function () { $scope.setMenuLinksItem(this); }, name: 'abonent-list' },
-                { href: '', caption: 'Заявки', ngclick: function () { $scope.setMenuLinksItem(this); }, name: 'request-list' }
-                { href: '', caption: 'Абоненты', ngclick: function () { $scope.setMenuLinksItem(this); }, name: 'abonent-list' },
+                { href: '', caption: 'Заявки', ngclick: function () { $scope.setMenuLinksItem(this); }, name: 'request-list' },
                 { href: '', caption: 'Улицы', ngclick: function () { $scope.setMenuLinksItem(this); }, name: 'street-list' }
             ], expanded: true
         });
