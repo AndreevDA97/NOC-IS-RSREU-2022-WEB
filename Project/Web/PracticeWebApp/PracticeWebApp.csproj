@@ -246,6 +246,10 @@
     <Content Include="assets\scripts\app\framework\passwordService.js" />
     <Content Include="assets\scripts\app\framework\portalPaginator.js" />
     <Content Include="assets\scripts\app\framework\_commonServices.js" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-street-edit.html" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlgStreetEdit.js" />
+    <Content Include="assets\scripts\app\practice\directives\street-list.html" />
+    <Content Include="assets\scripts\app\practice\directives\streetList.js" />
     <Content Include="assets\scripts\app\practice\directives\general-info.html" />
     <Content Include="assets\scripts\app\practice\directives\generalInfo.js" />
     <Content Include="assets\scripts\vendor\angular-ymaps.min.js" />
@@ -359,6 +363,7 @@
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\Practice\StreetListController.cs" />
     <Compile Include="Controllers\Practice\AbonentListController.cs" />
+    <Compile Include="Dto\Practice\StreetDto.cs" />
     <Compile Include="Dto\Practice\AbonentDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -369,6 +374,7 @@
     <Compile Include="Helpers\Common\ProcessExtension.cs" />
     <Compile Include="Helpers\Common\ProcessHelper.cs" />
     <Compile Include="Helpers\Practice\RequestValidateHelper.cs" />
+    <Compile Include="Models\Practice\GetStreetListModel.cs" />
     <Compile Include="Models\Practice\GetAbonentListModel.cs" />
     <Compile Include="Owin\Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
