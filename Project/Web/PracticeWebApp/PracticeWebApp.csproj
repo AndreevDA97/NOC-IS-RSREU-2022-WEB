@@ -361,8 +361,10 @@
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Common\VersionNoController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\Practice\RequestListController.cs" />
     <Compile Include="Controllers\Practice\StreetListController.cs" />
     <Compile Include="Controllers\Practice\AbonentListController.cs" />
+    <Compile Include="Dto\Practice\RequestDto.cs" />
     <Compile Include="Dto\Practice\StreetDto.cs" />
     <Compile Include="Dto\Practice\AbonentDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -374,6 +376,7 @@
     <Compile Include="Helpers\Common\ProcessExtension.cs" />
     <Compile Include="Helpers\Common\ProcessHelper.cs" />
     <Compile Include="Helpers\Practice\RequestValidateHelper.cs" />
+    <Compile Include="Models\Practice\GetRequestListModel.cs" />
     <Compile Include="Models\Practice\GetStreetListModel.cs" />
     <Compile Include="Models\Practice\GetAbonentListModel.cs" />
     <Compile Include="Owin\Startup.cs" />
