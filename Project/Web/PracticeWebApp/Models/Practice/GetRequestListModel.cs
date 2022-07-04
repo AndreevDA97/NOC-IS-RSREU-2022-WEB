@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PaySystemWebCommon.Dto.Pagination;
 using PracticeWebApp.Dto.Practice;
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace PracticeWebApp.Models.Practice
@@ -12,9 +13,9 @@ namespace PracticeWebApp.Models.Practice
         public string AbonentId { get; set; }
         public int? ExecutorId { get; set; }
         public int? FailureId { get; set; }
-        public DateTime? IncomingDate { get; set; }
-        public DateTime? ExecutionDate { get; set; }
-        public bool? Executed { get; set; }
+        public string IncomingDate { get; set; }
+        public string ExecutionDate { get; set; }
+        public string Executed { get; set; }
         public OrderDirection OrderByIncomingDate { get; set; }
         public OrderDirection OrderByExecutionDate { get; set; }
 
@@ -30,12 +31,12 @@ namespace PracticeWebApp.Models.Practice
             //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
             //if (FailureId.HasValue)
             //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
-            if (IncomingDate != null)
-                query = query.Where(item => item.INCOMINGDATE == IncomingDate);
-            if (ExecutionDate != null)
-                query = query.Where(item => item.EXECUTIONDATE == ExecutionDate);
-            if (Executed.HasValue)
-                query = query.Where(item => item.EXECUTED == ((Executed == true) ? 1 : 0)); // What?
+            if (!string.IsNullOrEmpty(IncomingDate))
+                query = query.Where(item => item.INCOMINGDATE.Date == DateTime.Parse(IncomingDate, CultureInfo.GetCultureInfo("ru")));
+            if (!string.IsNullOrEmpty(ExecutionDate))
+                query = query.Where(item => item.EXECUTIONDATE.Value.Date == DateTime.Parse(ExecutionDate, CultureInfo.GetCultureInfo("ru")));
+            if (!string.IsNullOrEmpty(Executed))
+                query = query.Where(item => item.EXECUTED == Convert.ToInt16(Executed));
             // Сортировка
             query = query
                 .OrderBy(item => item.INCOMINGDATE, OrderByIncomingDate)
