@@ -1,8 +1,8 @@
 ﻿angular.module('app.directives')
-    .directive('abonentList', ['commonFunctions', '$q', '$filter', 'caseService', 'organizationsService',
+    .directive('requestList', ['commonFunctions', '$q', '$filter', 'caseService', 'organizationsService',
         function (commonFunctions, $q, $filter, caseService, organizationsService) {
             return {
-                templateUrl: './assets/scripts/app/practice/directives/abonent-list.html',
+                templateUrl: './assets/scripts/app/practice/directives/request-list.html',
                 restrict: 'E',
                 replace: true,
                 scope: {
@@ -21,25 +21,28 @@
                     commonFunctions.refreshEditorStyles();
 
                     $scope.columns = [
-                        { name: 'Fio', caption: 'ФИО', type: 0, orderType: 0 },
-                        { name: 'Phone', caption: 'Телефон', type: 0 },
-                        { name: 'FlatNo', caption: 'Номер комнаты', type: 0 },
-                        { name: 'HouseNo', caption: 'Номер дома', type: 0 },
+                        { name: 'Id', caption: 'Номер запроса', type: 0, orderType: 0 },
+                        { name: 'AccountId', caption: 'Номер клиента', type: 0 },
+                        { name: 'ExecutorId', caption: 'Номер исполнителя', type: 0 },
+                        { name: 'FailrueId', caption: 'Номер неполадки', type: 0 },
+                        { name: 'IncommingDate', caption: 'Дата поступления заявки', type: 0 },
+                        { name: 'ExecutionDate', caption: 'Дата исполения заявки', type: 0 },
+                        { name: 'Executed', caption: 'Выполнение', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
                         /*0*/startEdit = function (row) {
-                            $scope.abonent = angular.copy(row);
-                            $scope.abonentAction = 'edit';
-                            $('#dlg-abonent-edit').modal('show');
+                            $scope.request = angular.copy(row);
+                            $scope.requestAction = 'edit';
+                            $('#dlg-request-edit').modal('show');
                         },
                         /*1*/startDelete = function (row) {
-                            $scope.abonent = row;
-                            $('#dlg-abonent-delete').modal('show');
+                            $scope.request = row;
+                            $('#dlg-request-delete').modal('show');
                         },
                     ];
-                    $scope.deleteAbonent = function () {
-                        caseService.deleteAbonent($scope.abonent.Id)
+                    $scope.deleteRequest = function () {
+                        caseService.deleteRequest($scope.request.Id)
                             .success(function () {
                                 $scope.refresh();
                             })
@@ -47,14 +50,14 @@
                                 $scope.error = 'Ошибка удаления: ' + error.Message;
                             });
                     };
-                    $scope.addAbonent = function () {
-                        $scope.abonent = {};
-                        $scope.abonentAction = 'add';
-                        $('#dlg-abonent-edit').modal('show');
+                    $scope.addRequest = function () {
+                        $scope.request = {};
+                        $scope.requestAction = 'add';
+                        $('#dlg-request-edit').modal('show');
                     };
 
                     $scope.resetOrder = function (column) {
-                        $scope.getModel.OrderByFio = 0;
+                        $scope.getModel.OrderByIncommingDate = 0;
                         $scope.getModel.PageNumber = 1;
                         for (var i = 0; i < $scope.columns.length; i++) {
                             if ($scope.columns[i].orderType != undefined && $scope.columns[i] != column)
@@ -69,15 +72,15 @@
                         if (newValue != oldValue) {
                             $scope.stopRefreshList = true;
                             $scope.resetOrder(column);
-                            $scope.getModel.OrderByFio = newValue;
+                            $scope.getModel.OrderByIncommingDate = newValue;
                             $scope.refresh();
                         }
                     }
 
                     $scope.updateLocalFields = function () {
-                        if ($scope.abonents == null) return;
-                        for (var i = 0; i < $scope.abonents.length; i++) {
-                            var row = $scope.abonents[i];
+                        if ($scope.requests == null) return;
+                        for (var i = 0; i < $scope.requests.length; i++) {
+                            var row = $scope.requests[i];
                             row.IsPrimaryHtml = '<div><input type="checkbox" ng-checked="' + row.IsPrimary + '" disabled></div>';
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
@@ -85,19 +88,19 @@
                             row.actions = actionRef;
                         }
                     };
-                    $scope.loadPromise = { message: 'Загрузка абонентов...' };
+                    $scope.loadPromise = { message: 'Загрузка заявок...' };
                     $scope.refresh = function () {
-                        $scope.abonents = null;
+                        $scope.requests = null;
                         $scope.error = null;
 
-                        $scope.loadPromise.promise = caseService.getAbonents($scope.getModel)
+                        $scope.loadPromise.promise = caseService.getRequests($scope.getModel)
                             .success(function (data) {
-                                $scope.abonents = data.Data;
+                                $scope.requests = data.Data;
                                 $scope.getModel.TotalCount = data.TotalCount;
                                 $scope.updateLocalFields();
                                 $scope.stopRefreshList = false;
                                 setTimeout(function () {
-                                    $('.selectpicker').selectpicker('refresh');
+                                    $('.datetimepicker').datetimepicker('refresh');
                                 }, 0);
                             })
                             .error(function (error) {
@@ -106,25 +109,35 @@
                     };
 
                     $scope.resetFilter = function () {
-                        $scope.getModel.Fio = null;
-                        $scope.getModel.StreetId = null;
+                        $scope.getModel.ExecutionDate = null;
                         setTimeout(function () {
-                            $('#getmodel-street').val('default');
-                            $('.selectpicker').selectpicker('refresh');
+                            $('#getmodel-executionDate').val('default');
+                            $('.datetimepicker').datetimepicker('refresh');
                             $scope.$apply();
                         }, 0);
                     };
 
                     $scope.$watchCollection('[getModel.PageSize, getModel.PageNumber]', function (newValues, oldValues) {
-                        if ($scope.abonents == null) return;
+                        if ($scope.requests == null) return;
                         $scope.refresh();
                     });
 
-                    $scope.getStreets = function () {
+                    $scope.getAbonent = function () {
                         $scope.error = null;
                         return caseService.getStreetValues()
                             .success(function (data) {
-                                $scope.streets = data;
+                                $scope.abonent = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getDisrepair = function () {
+                        $scope.error = null;
+                        return caseService.getDisrepairValues()
+                            .success(function (data) {
+                                $scope.disrepair = data;
                             })
                             .error(function (error) {
                                 $scope.error = 'Ошибка загрузки: ' + error.Message;
@@ -132,9 +145,9 @@
                     };
 
                     $scope.$watch('currentPage', function (newValue, oldValue) {
-                        if (newValue == 'abonent-list') {
+                        if (newValue == 'request-list') {
                             $q.all([
-                                $scope.getStreets()
+                                $scope.getDisrepair(), $scope.getAbonent()
                             ]).then(function () {
                                 $scope.refresh();
                             });

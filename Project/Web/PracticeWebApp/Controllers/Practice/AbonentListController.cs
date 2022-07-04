@@ -15,6 +15,11 @@ namespace PracticeWebApp.Controllers.Practice
     [RoutePrefix("api/Practice")]
     public class AbonentListController : ApiController
     {
+        /// <summary>
+        /// Метод для получения всех абонентов
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AbonentList")]
         public GetAbonentListModel Get(GetAbonentListModel model)
@@ -31,6 +36,12 @@ namespace PracticeWebApp.Controllers.Practice
             }
             return model;
         }
+        /// <summary>
+        /// Метод для редактирования и удаления абонентов
+        /// </summary>
+        /// <param name="abonentId"></param>
+        /// <param name="abonentDto"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("AbonentList/{abonentId}")]
         public HttpResponseMessage Put(int? abonentId, [FromBody]AbonentDto abonentDto)
@@ -67,6 +78,11 @@ namespace PracticeWebApp.Controllers.Practice
             }
             return result;
         }
+        /// <summary>
+        /// Метод для удаления абонента
+        /// </summary>
+        /// <param name="abonentId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("AbonentList/{abonentId}")]
         public HttpResponseMessage Delete(int? abonentId)
@@ -85,6 +101,10 @@ namespace PracticeWebApp.Controllers.Practice
             }
             return result;
         }
+        /// <summary>
+        /// Метод для получения конкретного абонента
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("AbonentList4Select")]
         public HttpResponseMessage Get()

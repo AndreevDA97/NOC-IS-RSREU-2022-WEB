@@ -1,0 +1,73 @@
+﻿<div>
+    <div class="modal fade" id="{{iddialog}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <style>
+                #{{iddialog}} #request .bootstrap-select {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <div class="modal-content" cg-busy="loadPromise">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Заявка</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert" ng-show="showWarning">
+                        Не все поля заполнены!
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Номер запроса</label>
+                        <input type="text" class="form-control" ng-model="request.Id" placeholder="Введите номер завки...">
+                    </div>
+                    <div>
+                        <label class="control-label">ФИО абонента:</label>
+                        <select class="form-control selectpicker" title='Выберите абонента' data-width="100%" ng-model="request.AccountId" id="{{iddialog}}AccountId">
+                            <option></option>
+                            <option ng-repeat="option in abonent" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="control-label">ФИО исполнителя:</label>
+                        <select class="form-control selectpicker" title='Выберите исполнителя' data-width="100%" ng-model="request.ExecutorId" id="{{iddialog}}ExecutorId">
+                            <option></option>
+                            <option ng-repeat="option in executor" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="control-label">Поломка:</label>
+                        <select class="form-control selectpicker" title='Выберите поломку' data-width="100%" ng-model="request.FailrueId" id="{{iddialog}}FailrueId">
+                            <option></option>
+                            <option ng-repeat="option in disrepair" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата поступления заявки</label>
+                        <input type="date" class="form-control" ng-model="request.IncommingDate" format-date>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата выполнеия заявки</label>
+                        <input type="date" class="form-control" ng-model="request.ExecutionDate" format-date>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Выполнение</label>
+                        <div class="radio-executed-request">
+                            <label>Выполнено</label>
+                            <input type="radio" class="form-control" ng-model="request.Executed" value="1">
+                            <label>Не выполнено</label>
+                            <input type="radio" class="form-control" ng-model="request.Executed" value="0">
+                        </div>
+                    </div>
+                    <div ng-show="error" class="form-group font-small-danger">
+                        {{error}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="submit()">
+                        {{action == 'edit' ? 'Отредактировать запись' : 'Добавить запись'}}
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

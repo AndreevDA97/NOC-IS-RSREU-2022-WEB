@@ -51,7 +51,8 @@ namespace AbonentPlus.PaySystem.Server.PaySystemORM
     partial void InsertSERVICES(SERVICES instance);
     partial void UpdateSERVICES(SERVICES instance);
     partial void DeleteSERVICES(SERVICES instance);
-    partial void InsertSTREET(STREET instance);
+    partial void Insert
+			(STREET instance);
     partial void UpdateSTREET(STREET instance);
     partial void DeleteSTREET(STREET instance);
     #endregion
