@@ -47,6 +47,14 @@
             },
             getRequestValues: function () {
                 return $universalService.postRequest('./api/Practice/RequestList4Select');
+            },
+            // FailureListController
+            getFailureValues: function () {
+                return $universalService.postRequest('./api/Practice/FailureList4Select');
+            },
+            // ExecutorListController
+            getFailureValues: function () {
+                return $universalService.postRequest('./api/Practice/FailureList4Select');
             }
         };
     }]);
