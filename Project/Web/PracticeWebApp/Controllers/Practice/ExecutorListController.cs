@@ -12,11 +12,12 @@ using AbonentPlus.PaySystem.Server.PaySystemORM;
 namespace PracticeWebApp.Controllers.Practice
 {
     [RoutePrefix("api/Practice")]
-    public class RequestListController : ApiController
+    public class EXECUTORListController : ApiController
     {
+        /*
         [HttpPost]
-        [Route("RequestList")]
-        public GetRequestListModel Get(GetRequestListModel model)
+        [Route("ExecutorList")]
+        public GetExecutorListModel Get(GetExecutorListModel model)
         {
             using (var db = DataBase.GetNew())
             {
@@ -25,80 +26,81 @@ namespace PracticeWebApp.Controllers.Practice
                 // Выполнение запроса
                 model.TotalCount = query.Count();
                 model.Data = query.Pagination(model)
-                    .Select(RequestDto.Map)
+                    .Select(ExecutorDto.Map)
                     .ToList();
             }
             return model;
         }
         [HttpPut]
-        [Route("RequestList/{requestId}")]
-        public HttpResponseMessage Put(int? requestId, [FromBody]RequestDto requestDto)
+        [Route("ExecutorList/{executorId}")]
+        public HttpResponseMessage Put(int? executorId, [FromBody]ExecutorDto executorDto)
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
-                var helper = new RequestValidateHelper(Request, ref result, db);
+                var helper = new ExecutorValidateHelper(Executor, ref result, db);
 
-                if (requestId.HasValue) // редактирование
+                if (executorId.HasValue) // редактирование
                 {
-                    if (!helper.ValidateById(requestId, out REQUEST requestOrm))
+                    if (!helper.ValidateById(executorId, out EXECUTOR executorOrm))
                         return result;
 
-                    requestDto.ToOrm(requestOrm);
+                    executorDto.ToOrm(executorOrm);
                     db.SubmitChanges();
 
-                    result = Request.CreateResponse(HttpStatusCode.OK);
+                    result = Executor.CreateResponse(HttpStatusCode.OK);
                 }
                 else // добавление
                 {
-                    var errorMessage = requestDto.IsValidate();
+                    var errorMessage = executorDto.IsValidate();
                     if (!string.IsNullOrEmpty(errorMessage))
 					{
-                        result = Request.CreateResponse(HttpStatusCode.BadRequest, new WebError(errorMessage));
+                        result = Executor.CreateResponse(HttpStatusCode.BadExecutor, new WebError(errorMessage));
                         return result;
                     }
-                    var requestOrm = requestDto.ToOrm(null);
-                    db.REQUEST.InsertOnSubmit(requestOrm);
+                    var executorOrm = executorDto.ToOrm(null);
+                    db.EXECUTOR.InsertOnSubmit(executorOrm);
                     db.SubmitChanges();
 
-                    result = Request.CreateResponse(HttpStatusCode.OK);
+                    result = Executor.CreateResponse(HttpStatusCode.OK);
                 }
             }
             return result;
         }
         [HttpDelete]
-        [Route("RequestList/{requestId}")]
-        public HttpResponseMessage Delete(int? requestId)
+        [Route("ExecutorList/{executorId}")]
+        public HttpResponseMessage Delete(int? executorId)
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
-                var helper = new RequestValidateHelper(Request, ref result, db);
-                if (!helper.ValidateById(requestId, out REQUEST requestOrm))
+                var helper = new ExecutorValidateHelper(Executor, ref result, db);
+                if (!helper.ValidateById(executorId, out EXECUTOR executorOrm))
                     return result;
 
-                db.REQUEST.DeleteOnSubmit(requestOrm);
+                db.EXECUTOR.DeleteOnSubmit(executorOrm);
                 db.SubmitChanges();
 
-                result = Request.CreateResponse(HttpStatusCode.OK);
+                result = Executor.CreateResponse(HttpStatusCode.OK);
             }
             return result;
         }
+        */
         [HttpPost]
-        [Route("RequestList4Select")]
+        [Route("ExecutorList4Select")]
         public HttpResponseMessage Get()
         {
             var result = new HttpResponseMessage();
             using (var db = DataBase.GetNew())
             {
-                var model = new GetRequestListModel();
+                var model = new GetExecutorListModel();
                 var query = model.GetQuery(db);
                 var values = query
-                    .OrderByDescending(a => a.REQUESTCD)
+                    .OrderByDescending(a => a.EXECUTORCD)
                     .Select(a => new
                     { 
-                        Id = a.REQUESTCD,
-                        Name = a.ACCOUNTCD
+                        Id = a.EXECUTORCD,
+                        Name = a.Fio
                     })
                     .ToList();
 

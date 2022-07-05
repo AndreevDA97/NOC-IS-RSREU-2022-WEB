@@ -4,17 +4,20 @@ using AbonentPlus.PaySystem.Server.PaySystemORM;
 namespace PracticeWebApp.Dto.Practice
 {
     /// <summary>
-    /// АБонент
+    /// Запрос
     /// </summary>
     public class RequestDto
 	{
 		public int Id { get; set; }
 		public string AccountId { get; set; }
+		public string AbonentFio { get; set; }
 		public int? ExecutorId { get; set; }
+		public string ExecutorFio { get; set; }
 		public int? FailureId { get; set; }
+		public string FailureName { get; set; }
 		public DateTime IncomingDate { get; set; }
 		public DateTime? ExecutionDate { get; set; }
-		public short? Executed { get; set; }
+		public bool? Executed { get; set; }
 
 		public static RequestDto Map(REQUEST itemOrm)
 		{
@@ -23,12 +26,17 @@ namespace PracticeWebApp.Dto.Practice
 			{
 				Id = itemOrm.REQUESTCD,
 				AccountId = itemOrm.ACCOUNTCD,
+				AbonentFio = itemOrm.ABONENT.Fio,
 				ExecutorId = itemOrm.EXECUTORCD,
 				FailureId = itemOrm.FAILURECD,
 				IncomingDate = itemOrm.INCOMINGDATE,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
-				Executed = itemOrm.EXECUTED
+				Executed = itemOrm.EXECUTED == 1
 			};
+			if (itemOrm.EXECUTOR != null)
+				result.ExecutorFio = itemOrm.EXECUTOR.Fio;
+			if (itemOrm.DISREPAIR != null)
+				result.FailureName = itemOrm.DISREPAIR.FAILURENM;
 			return result;
 		}
 
@@ -41,7 +49,7 @@ namespace PracticeWebApp.Dto.Practice
 			itemOrm.FAILURECD = FailureId;
 			itemOrm.INCOMINGDATE = IncomingDate;
 			itemOrm.EXECUTIONDATE = ExecutionDate;
-			itemOrm.EXECUTED = Executed;
+			itemOrm.EXECUTED = Executed.Equals(true) ? (short)1 : (short)0;
 			return itemOrm;
 		}
 

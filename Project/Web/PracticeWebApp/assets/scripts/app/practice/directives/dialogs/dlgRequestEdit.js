@@ -1,6 +1,14 @@
 ﻿angular.module('app.directives')
     .directive('dlgRequestEdit', ['commonFunctions', 'caseService', 'organizationsService', '$q',
         function (commonFunctions, caseService, organizationsService, $q) {
+            commonFunctions.refreshEditorStyles();
+
+            var datepicker = $('.datepicker').datepicker('update');
+            // предотвратить баг вызова события открытия окна
+            datepicker.on('show.bs.modal', function (event) {
+                event.stopPropagation();
+            });
+
             return {
                 templateUrl: './assets/scripts/app/practice/directives/dialogs/dlg-request-edit.html',
                 restrict: 'E',
@@ -22,11 +30,17 @@
                             $scope.request.Pays = [];
                         $scope.loadPromise = { message: 'Пожалуйста подождите...' };
                         $scope.loadPromise.promise = $q.all([
-                            $scope.getAbonents()
+                            $scope.getAbonents(),
+                            $scope.getExecutors(),
+                            $scope.getFailures()
                         ]).then(function () {
                             setTimeout(function () {
                                 $(modal + 'AccountId').selectpicker('val', $scope.request.AccountId);
                                 $(modal + 'AccountId').selectpicker('refresh');
+                                $(modal + 'ExecutorId').selectpicker('val', $scope.request.ExecutorId);
+                                $(modal + 'ExecutorId').selectpicker('refresh');
+                                $(modal + 'FailureId').selectpicker('val', $scope.request.FailureId);
+                                $(modal + 'FailureId').selectpicker('refresh');
                             }, 0);
                         });
                         setTimeout(function () {
@@ -45,6 +59,28 @@
                         return caseService.getAbonentValues()
                             .success(function (data) {
                                 $scope.abonents = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getExecutors = function () {
+                        $scope.error = null;
+                        return caseService.getExecutorValues()
+                            .success(function (data) {
+                                $scope.executors = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getFailures = function () {
+                        $scope.error = null;
+                        return caseService.getFailureValues()
+                            .success(function (data) {
+                                $scope.failures = data;
                             })
                             .error(function (error) {
                                 $scope.error = 'Ошибка загрузки: ' + error.Message;

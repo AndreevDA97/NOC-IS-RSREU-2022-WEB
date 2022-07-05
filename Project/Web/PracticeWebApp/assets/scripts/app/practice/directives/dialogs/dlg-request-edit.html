@@ -24,24 +24,33 @@
                         <!--<input type="text" class="form-control" ng-model="request.AccountId" placeholder="Введите лицевой счет...">-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">ExecutorId</label>
-                        <input type="text" class="form-control" ng-model="request.ExecutorId" placeholder="Введите ExecutorId...">
+                        <label class="control-label">Исполнитель</label>
+                        <select class="form-control selectpicker" title='Выберите исполнителя' data-width="100%" ng-model="request.ExecutorId" id="{{iddialog}}ExecutorId">
+                            <option></option>
+                            <option ng-repeat="option in executors" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                        <!--<input type="text" class="form-control" ng-model="request.ExecutorId" placeholder="Введите ExecutorId...">-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">FailureId</label>
-                        <input type="text" class="form-control" ng-model="request.FailureId" placeholder="Введите FailureId...">
+                        <label class="control-label">Неисправность</label>
+                        <select class="form-control selectpicker" title='Выберите неисправность' data-width="100%" ng-model="request.FailureId" id="{{iddialog}}FailureId">
+                            <option></option>
+                            <option ng-repeat="option in failures" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Name}}</option>
+                        </select>
+                        <!--<input type="text" class="form-control" ng-model="request.FailureId" placeholder="Введите FailureId...">-->
                     </div>
                     <div>
-                        <label class="control-label">IncomingDate:</label>
-                        <input type="date" class="form-control" ng-model="request.IncomingDate" placeholder="Введите IncomingDate...">
+                        <label class="control-label">IncomingDate</label>
+                        <input type="date" class="form-control" ng-model="request.IncomingDate" placeholder="Введите дату поступления заявки...">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">ExecutionDate</label>
-                        <input type="date" class="form-control" ng-model="request.ExecutionDate" placeholder="Введите ExecutionDate...">
+                        <label class="control-label">Дата исполнения</label>
+                        <input type="date" class="form-control" ng-model="request.ExecutionDate" placeholder="Введите дату исполнения...">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Executed</label>
-                        <input type="number" min="0" max="1" class="form-control" ng-model="request.Executed" placeholder="Введите Executed...">
+                        <label class="control-label">Выполнение</label>
+                        <input type="number" min="0" max="1" class="form-control" ng-model="request.Executed" placeholder="Выполнение...">
+                        <input type="checkbox" class="form-control" ng-model="request.Executed" placeholder="Выполнение...">
                     </div>
                     <!--<hr class="form-group" style="margin-top:0">
                     <div class="div-collapse-light">

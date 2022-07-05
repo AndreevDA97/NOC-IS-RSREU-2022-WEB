@@ -33,7 +33,7 @@
                     <portal-paginator model="getModel" paginator-id="'pg-request-list-top'"></portal-paginator>
                 </div>
             </div>
-            <datatable columns="columns" rows="requests" actions="actions" builtinordering="false"></datatable>
+            <datatable columns="columns" columnDefs="columnDefs" rows="requests" actions="actions" builtinordering="false"></datatable>
             <portal-paginator model="getModel" paginator-id="'pg-request-list-buttom'"></portal-paginator>
             <div ng-show="error" class="form-group font-small-danger">
                 {{error}}

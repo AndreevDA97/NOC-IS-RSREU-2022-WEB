@@ -16,7 +16,7 @@
             getAbonentValues: function () {
                 return $universalService.postRequest('./api/Practice/AbonentList4Select');
             },
-            saveStreet: function (abonentId, abonentDto) {
+            saveAbonent: function (abonentId, abonentDto) {
                 return $universalService.putRequest('./api/Practice/AbonentList/' + abonentId, abonentDto);
             },
             deleteAbonent: function (abonentId) {
@@ -39,14 +39,44 @@
             getRequests: function (model) {
                 return $universalService.postRequest('./api/Practice/RequestList', model);
             },
-            saveRequest: function (streetId, streetDto) {
-                return $universalService.putRequest('./api/Practice/RequestList/' + streetId, streetDto);
+            saveRequest: function (requestId, requestDto) {
+                return $universalService.putRequest('./api/Practice/RequestList/' + requestId, requestDto);
             },
-            deleteRequest: function (streetId) {
-                return $universalService.deleteRequest('./api/Practice/RequestList/' + streetId);
+            deleteRequest: function (requestId) {
+                return $universalService.deleteRequest('./api/Practice/RequestList/' + requestId);
             },
             getRequestValues: function () {
                 return $universalService.postRequest('./api/Practice/RequestList4Select');
+            },
+            // ExecutorListController
+            /*
+            getExecutors: function (model) {
+                return $universalService.postRequest('./api/Practice/ExecutorList', model);
+            },
+            saveExecutor: function (executorId, executorDto) {
+                return $universalService.putRequest('./api/Practice/ExecutorList/' + executorId, executorDto);
+            },
+            deleteExecutor: function (executorId) {
+                return $universalService.deleteRequest('./api/Practice/ExecutorList/' + executorId);
+            },
+            */
+            getExecutorValues: function () {
+                return $universalService.postRequest('./api/Practice/ExecutorList4Select');
+            },
+            // FailureListController
+            /*
+            getFailures: function (model) {
+                return $universalService.postRequest('./api/Practice/FailureList', model);
+            },
+            saveFailure: function (failureId, failureDto) {
+                return $universalService.putRequest('./api/Practice/FailureList/' + failureId, failureDto);
+            },
+            deleteFailure: function (failureId) {
+                return $universalService.deleteRequest('./api/Practice/FailureList/' + failureId);
+            },
+            */
+            getFailureValues: function () {
+                return $universalService.postRequest('./api/Practice/FailureList4Select');
             }
         };
     }]);

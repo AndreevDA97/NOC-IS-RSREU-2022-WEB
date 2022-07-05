@@ -22,12 +22,26 @@
 
                     $scope.columns = [
                         { name: 'AccountId', caption: 'Лицевой счет', type: 0, orderType: 0 },
-                        { name: 'ExecutorId', caption: 'ExecutorId', type: 0 },
-                        { name: 'FailureId', caption: 'FailureId', type: 0 },
-                        { name: 'IncomingDate', caption: 'IncomingDate', type: 0 },
-                        { name: 'ExecutionDate', caption: 'ExecutionDate', type: 0 },
-                        { name: 'Executed', caption: 'Executed', type: 0 },
-                        { name: 'actions', caption: 'Действия', type: 1, }
+                        { name: 'AbonentFio', caption: 'ФИО абонента', type: 0, orderType: 0 },
+                        { name: 'ExecutorFio', caption: 'ФИО исполнителя', type: 0 },
+                        { name: 'FailureName', caption: 'Неисправность', type: 0 },
+                        { name: 'IncomingDate', caption: 'Дата заявки', type: 0 },
+                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0 },
+                        { name: 'ExecutedRow', caption: 'Выполнено', type: 1 },
+                        { name: 'actions', caption: 'Действия', type: 1 }
+                    ];
+
+                    $scope.columnDefs = [
+                        {
+                            targets: 5,
+                            data: "Executed",
+                            render: function (data, type, row, meta) {
+                                if (data == 1) {
+                                    return '<input type="checkbox" checked>'
+                                }
+                                return '<input type="checkbox">'
+                            }
+                        }
                     ];
                     $scope.actions = [
                         /*0*/startEdit = function (row) {
@@ -66,6 +80,9 @@
                     $scope.$watch('columns[0].orderType', function (newValue, oldValue) {
                         changeOrderType($scope.columns[0], newValue, oldValue);
                     });
+                    $scope.$watch('columns[1].orderType', function (newValue, oldValue) {
+                        changeOrderType($scope.columns[1], newValue, oldValue);
+                    });
                     function changeOrderType(column, newValue, oldValue) {
                         if ($scope.stopRefreshList) return;
                         if (newValue != oldValue) {
@@ -80,7 +97,7 @@
                         if ($scope.requests == null) return;
                         for (var i = 0; i < $scope.requests.length; i++) {
                             var row = $scope.requests[i];
-                            row.IsPrimaryHtml = '<div><input type="checkbox" ng-checked="' + row.IsPrimary + '" disabled></div>';
+                            row.ExecutedRow = '<span><input type="checkbox" ng-checked="' + row.Executed + '" disabled></span>';
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';

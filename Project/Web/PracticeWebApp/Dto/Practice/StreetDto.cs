@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 
 namespace PracticeWebApp.Dto.Practice
 {
+	/// <summary>
+	/// Улица
+	/// </summary>
 	public class StreetDto
 	{
 		public int Id { get; set; }
