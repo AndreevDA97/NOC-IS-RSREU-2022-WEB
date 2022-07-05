@@ -33,7 +33,8 @@ namespace PracticeWebApp.Dto.Practice
 				ExecutorId = itemOrm.EXECUTORCD.ToString(),
 				FailureId = itemOrm.FAILURECD.ToString(),
 				IncomingDate = itemOrm.INCOMINGDATE.Date.ToString(),
-				ExecutionDate = itemOrm.INCOMINGDATE.Date.ToString()
+				ExecutionDate = itemOrm.INCOMINGDATE.Date.ToString(),
+				Executed = itemOrm.EXECUTED.ToString()
 			};
 			return result;
 		}

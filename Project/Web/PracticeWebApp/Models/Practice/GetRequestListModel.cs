@@ -17,7 +17,6 @@ namespace PracticeWebApp.Models.Practice
         public string ExecutionDate { get; set; }
         public string Executed { get; set; }
         public OrderDirection OrderByIncomingDate { get; set; }
-        public OrderDirection OrderByExecutionDate { get; set; }
 
         public IQueryable<REQUEST> GetQuery(PaySystemDataBase db,
             IQueryable<REQUEST> query = null)
@@ -39,8 +38,7 @@ namespace PracticeWebApp.Models.Practice
                 query = query.Where(item => item.EXECUTED == Convert.ToInt16(Executed));
             // Сортировка
             query = query
-                .OrderBy(item => item.INCOMINGDATE, OrderByIncomingDate)
-                .OrderBy(item => item.EXECUTIONDATE, OrderByExecutionDate);
+                .OrderBy(item => item.INCOMINGDATE, OrderByIncomingDate);
             return query;
         }
     }

@@ -21,9 +21,9 @@
                     commonFunctions.refreshEditorStyles();
 
                     $scope.columns = [
-                        { name: 'IncomingDate', caption: 'Дата заявки', type: 0 },
-                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0, orderType: 0 },
-                        { name: 'Executed', caption: 'Выполнено', type: 0, orderType: 0 },
+                        { name: 'IncomingDate', caption: 'Дата заявки', type: 0, orderType: 0 },
+                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0},
+                        { name: 'Executed', caption: 'Выполнено', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -53,7 +53,8 @@
                     };
 
                     $scope.resetOrder = function (column) {
-                        $scope.getModel.OrderByFio = 0;
+                        $scope.getModel.OrderByIncomingDate = 0;
+                        $scope.getModel.OrderByExecutionDate = 0;
                         $scope.getModel.PageNumber = 1;
                         for (var i = 0; i < $scope.columns.length; i++) {
                             if ($scope.columns[i].orderType != undefined && $scope.columns[i] != column)
@@ -68,7 +69,7 @@
                         if (newValue != oldValue) {
                             $scope.stopRefreshList = true;
                             $scope.resetOrder(column);
-                            $scope.getModel.OrderByFio = newValue;
+                            $scope.getModel.OrderByIncomingDate = newValue;
                             $scope.refresh();
                         }
                     }
