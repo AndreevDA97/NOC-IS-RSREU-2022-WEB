@@ -41,10 +41,7 @@ C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\PaySystemServer.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\PaySystemServer.pdb
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\DnsClient.dll
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\EPPlus.Core.dll
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\FluentResults.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\log4net.dll
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\MongoDB.Bson.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\MongoDB.Driver.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\MySql.Data.dll
@@ -54,12 +51,9 @@ C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\RabbitMQ.Client.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\System.Data.SQLite.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\System.Net.Http.Formatting.dll
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\TsSoft.Commons.dll
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\DnsClient.xml
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\EPPlus.Core.xml
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\log4net.xml
-C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\MongoDB.Bson.xml
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\MongoDB.Driver.xml
 C:\Users\abc\Source\Repos\NOC-IS-RSREU-2022-WEB\Project\Server\ServerLibrary\bin\Debug\Newtonsoft.Json.xml

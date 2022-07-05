@@ -92,6 +92,9 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -115,20 +118,51 @@
     <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.OAuth.3.0.0\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\odp.net.x64.112.3.20\lib\net40\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Oracle.ManagedDataAccess.21.6.1\lib\net462\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.6.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -246,6 +280,10 @@
     <Content Include="assets\scripts\app\framework\passwordService.js" />
     <Content Include="assets\scripts\app\framework\portalPaginator.js" />
     <Content Include="assets\scripts\app\framework\_commonServices.js" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-request-edit.html" />
+    <Content Include="assets\scripts\app\practice\directives\dialogs\dlgRequestEdit.js" />
+    <Content Include="assets\scripts\app\practice\directives\requestList.js" />
+    <Content Include="assets\scripts\app\practice\directives\request-list.html" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlg-street-edit.html" />
     <Content Include="assets\scripts\app\practice\directives\dialogs\dlgStreetEdit.js" />
     <Content Include="assets\scripts\app\practice\directives\street-list.html" />
@@ -361,10 +399,16 @@
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Common\VersionNoController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\Practice\FailureListController.cs" />
+    <Compile Include="Controllers\Practice\ExecutorListController.cs" />
+    <Compile Include="Controllers\Practice\RequestListController.cs" />
     <Compile Include="Controllers\Practice\StreetListController.cs" />
     <Compile Include="Controllers\Practice\AbonentListController.cs" />
-    <Compile Include="Dto\Practice\StreetDto.cs" />
     <Compile Include="Dto\Practice\AbonentDto.cs" />
+    <Compile Include="Dto\Practice\RequestDto.cs" />
+    <Compile Include="Dto\Practice\FailureDto.cs" />
+    <Compile Include="Dto\Practice\ExecutorDto.cs" />
+    <Compile Include="Dto\Practice\StreetDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -374,7 +418,10 @@
     <Compile Include="Helpers\Common\ProcessExtension.cs" />
     <Compile Include="Helpers\Common\ProcessHelper.cs" />
     <Compile Include="Helpers\Practice\RequestValidateHelper.cs" />
+    <Compile Include="Models\Practice\GetFailureListModel.cs" />
+    <Compile Include="Models\Practice\GetExecutorListModel.cs" />
     <Compile Include="Models\Practice\GetStreetListModel.cs" />
+    <Compile Include="Models\Practice\GetRequestListModel.cs" />
     <Compile Include="Models\Practice\GetAbonentListModel.cs" />
     <Compile Include="Owin\Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -415,6 +462,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\AlphaProfile.pubxml" />
     <None Include="Properties\PublishProfiles\BetaProfile.pubxml" />
@@ -470,6 +523,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
     <Error Condition="!Exists('..\..\packages\JavaScriptEngineSwitcher.V8.1.5.8\build\JavaScriptEngineSwitcher.V8.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JavaScriptEngineSwitcher.V8.1.5.8\build\JavaScriptEngineSwitcher.V8.props'))" />
+    <Error Condition="!Exists('..\..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets. -->
@@ -478,4 +532,5 @@
   <Target Name="AfterBuild">
   </Target>
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="..\..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
 </Project>

@@ -21,12 +21,21 @@
                     commonFunctions.refreshEditorStyles();
 
                     $scope.columns = [
-                        { name: 'AccountId', caption: 'Абонент', type: 0, orderType: 0 },
-                        { name: 'ExecutorId', caption: 'Слесарь', type: 0 },
-                        { name: 'FailureId', caption: 'Неисправность', type: 0 },
-                        { name: 'IncomingDate', caption: 'Дата оформления', type: 0 },
-                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0 },
-                        { name: 'Executed', caption: 'Исполнено', type: 0 },
+                        { name: 'AbonentFio', caption: 'Абонент', type: 0, orderType: 0 },
+                        { name: 'ExecutorFio', caption: 'Слесарь', type: 0 },
+                        { name: 'FailureName', caption: 'Неисправность', type: 0 },
+                        {
+                            orderField: "OrderByIncomingDate", name: request => request.IncomingDate.toLocaleDateString("ru-RU"),
+                            caption: 'Дата оформления', type: 2, orderType: 0
+                        },
+                        {
+                            orderField: "OrderByExecutionDate",
+                            name: request => request.ExecutionDate ? request.ExecutionDate.toLocaleDateString("ru-RU") : "Не определена",
+                            caption: 'Дата исполнения',
+                            type: 2,
+                            orderType: 0
+                        },
+                        { name: "ExecutedTemplate", caption: "Исполнено", type: 1 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -63,15 +72,20 @@
                                 $scope.columns[i].orderType = 0;
                         }
                     };
-                    $scope.$watch('columns[0].orderType', function (newValue, oldValue) {
-                        changeOrderType($scope.columns[0], newValue, oldValue);
-                    });
+
+                    for (let colIdx = 0; colIdx < $scope.columns.length; colIdx++) {
+                        $scope.$watch(`columns[${colIdx}].orderType`, function (newValue, oldValue) {
+                            changeOrderType($scope.columns[colIdx], newValue, oldValue);
+                        });
+                    }
+
                     function changeOrderType(column, newValue, oldValue) {
                         if ($scope.stopRefreshList) return;
                         if (newValue != oldValue) {
                             $scope.stopRefreshList = true;
                             $scope.resetOrder(column);
-                            $scope.getModel.OrderByFio = newValue;
+                            if (typeof column.orderField == "string")
+                                $scope.getModel[column.orderField] = newValue;
                             $scope.refresh();
                         }
                     }
@@ -85,8 +99,25 @@
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';
                             row.actions = actionRef;
+                            row.ExecutedTemplate = `<input type="checkbox" style="margin-left: 50%; transform: translate(-50%, 0)" ng-model="row.Executed">`
                         }
                     };
+
+                    /**
+                     * 
+                     * @param {string | null | undefined} date
+                     * @returns {Date | null}
+                     */
+                    const dateStrToDate = date => {
+                        if (typeof date === "string") {
+                            return new Date(date.split(".").reverse().join("-"));
+                        }
+
+                        return null;
+                    };
+
+                    $scope.abonentIdToFio = new Map();
+
                     $scope.loadPromise = { message: 'Загрузка абонентов...' };
                     $scope.refresh = function () {
                         $scope.requests = null;
@@ -95,6 +126,10 @@
                         $scope.loadPromise.promise = caseService.getRequests($scope.getModel)
                             .success(function (data) {
                                 $scope.requests = data.Data;
+                                $scope.requests.forEach(req => {
+                                    req.IncomingDate = dateStrToDate(req.IncomingDate);
+                                    req.ExecutionDate = dateStrToDate(req.ExecutionDate);
+                                });
                                 $scope.getModel.TotalCount = data.TotalCount;
                                 $scope.updateLocalFields();
                                 $scope.stopRefreshList = false;
@@ -108,8 +143,12 @@
                     };
 
                     $scope.resetFilter = function () {
-                        $scope.getModel.Fio = null;
-                        $scope.getModel.StreetId = null;
+                        $scope.getModel.AbonentId = null;
+                        $scope.getModel.ExecutorId = null;
+                        $scope.getModel.FailureId = null;  
+                        $scope.getModel.IncomingDate = null;
+                        $scope.getModel.ExecutionDate = null;
+
                         setTimeout(function () {
                             $('#getmodel-street').val('default');
                             $('.selectpicker').selectpicker('refresh');
@@ -122,28 +161,51 @@
                         $scope.refresh();
                     });
 
-                    const models = ["street", "executor", "abonent", "failure"];
-                    for (const modelName of models) {
+                    const modelsDescs = [
+                        { name: "street", nameProp: "Name" },
+                        { name: "executor", nameProp: "Fio" },
+                        { name: "abonent", nameProp: "Fio" },
+                        { name: "failure", nameProp: "Name" }
+                    ];
+                    for (const modelsDesc of modelsDescs) {
+                        const modelName = modelsDesc.name;
                         const pascalCaseModelName = modelName[0].toUpperCase() + modelName.slice(1);
                         $scope[`get${pascalCaseModelName}s`] = function () {
                             $scope.error = null;
                             return caseService[`get${pascalCaseModelName}Values`]()
                                 .success(function (data) {
-                                    $scope[modelName] = data;
+                                    $scope[modelName + "s"] = data;
                                 })
                                 .error(function (error) {
                                     $scope.error = 'Ошибка загрузки: ' + error.Message;
                                 });
                         };
+
+                        let nameMap = $scope[`${modelName}IdToName`];
+                        if (!nameMap) {
+                            nameMap = new Map();
+                            $scope[`${modelName}IdToName`] = nameMap;
+                        }
                     }
+                    const getMethods = [...modelsDescs.map(d => d.name).map(m => `get${m[0].toUpperCase() + m.slice(1)}s`).map(m => $scope[m])]
 
 
                     $scope.$watch('currentPage', function (newValue, oldValue) {
                         if (newValue == 'request-list') {
                             $q.all([
-                                $scope.getStreets()
+                                ...getMethods.map(meth => meth())
                             ]).then(function () {
                                 $scope.refresh();
+
+                                for (const modelsDesc of modelsDescs) {
+                                    const modelName = modelsDesc.name;
+                                    const records = $scope[modelName + "s"];
+
+                                    for (let rec of records) {
+                                        $scope[`${modelName}IdToName`].set(rec.Id, rec[modelsDesc.nameProp]);
+                                    }
+                                    
+                                }
                             });
                         }
                     });

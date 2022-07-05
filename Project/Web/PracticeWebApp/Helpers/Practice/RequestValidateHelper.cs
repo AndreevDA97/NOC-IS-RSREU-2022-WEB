@@ -54,6 +54,25 @@ namespace PracticeWebApp.Helpers.Practice
             return true;
         }
 
+        public bool ValidateStreetById(int? streetId, out STREET streetOrm)
+        {
+            streetOrm = null;
+            if (!streetId.HasValue)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Не указан идентификатор заявки."));
+                return false;
+            }
+            streetOrm = db.STREET.SingleOrDefault(c => c.STREETCD == streetId);
+            if (streetOrm == null)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Указанная заявка не найден."));
+                return false;
+            }
+            return true;
+        }
+
         public bool ValidateRequestById(int? requestId, out REQUEST requestOrm)
         {
             requestOrm = null;

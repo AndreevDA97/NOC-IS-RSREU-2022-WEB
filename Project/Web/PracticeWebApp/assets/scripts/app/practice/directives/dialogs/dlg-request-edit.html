@@ -1,0 +1,64 @@
+﻿<div>
+    <div class="modal fade" id="{{iddialog}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <style>
+                #{{iddialog}} #requeststreet .bootstrap-select {
+                    margin-bottom: 0 !important;
+                }
+            </style>
+            <div class="modal-content" cg-busy="loadPromise">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Заявка</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert" ng-show="showWarning">
+                        Не все поля заполнены!
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Абонент:</label>
+                        <select id="{{iddialog}}AbonentId" class="form-control selectpicker" title='Выберите абонента...' data-width="100%" ng-model="data.AbonentId" }">
+                            <option></option>
+                            <option ng-repeat="item in abonents" value="{{item.Id}}">{{item.Fio}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Слесарь:</label>
+                        <select id="{{iddialog}}ExecutorId" class="form-control selectpicker" title='Выберите слесаря...' data-width="100%" ng-model="data.ExecutorId">
+                            <option></option>
+                            <option ng-repeat="item in executors" value="{{item.Id}}">{{item.Fio}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Неисправность:</label>
+                        <select id="{{iddialog}}FailureId" class="form-control selectpicker" title='Выберите неисправности...' data-width="100%" ng-model="data.FailureId">
+                            <option></option>
+                            <option ng-repeat="item in failures" value="{{item.Id}}">{{item.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата оформления:</label>
+                        <input type="date" ng-model="data.IncomingDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата оформления:</label>
+                        <input type="date" ng-model="data.ExecutionDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Выполнена:</label>
+                        <input type="checkbox" ng-model="data.Executed" />
+                    </div>
+                    <div ng-show="error" class="form-group font-small-danger">
+                        {{error}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="submit()">
+                        {{action == 'edit' ? 'Отредактировать запись' : 'Добавить запись'}}
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

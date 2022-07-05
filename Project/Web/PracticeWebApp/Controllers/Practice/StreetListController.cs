@@ -47,7 +47,7 @@ namespace PracticeWebApp.Controllers.Practice
 
                 if (streetId.HasValue) // редактирование
                 {
-                    if (!helper.ValidateById(streetId, out STREET streetOrm))
+                    if (!helper.ValidateStreetById(streetId, out STREET streetOrm))
                         return result;
 
                     streetDto.ToOrm(streetOrm);
@@ -74,7 +74,7 @@ namespace PracticeWebApp.Controllers.Practice
             using (var db = DataBase.GetNew())
             {
                 var helper = new RequestValidateHelper(Request, ref result, db);
-                if (!helper.ValidateById(streetId, out STREET streetOrm))
+                if (!helper.ValidateStreetById(streetId, out STREET streetOrm))
                     return result;
 
                 db.STREET.DeleteOnSubmit(streetOrm);

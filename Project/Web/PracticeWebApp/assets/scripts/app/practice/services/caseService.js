@@ -36,6 +36,8 @@
                 return $universalService.postRequest('./api/Practice/StreetList4Select');
             },
 
+
+
             getRequests: function (model) {
                 return $universalService.postRequest('./api/Practice/RequestList', model);
             },
@@ -47,6 +49,17 @@
             },
             deleteRequest: function (requestId) {
                 return $universalService.deleteRequest('./api/Practice/RequestList/' + requestId);
+            },
+
+
+            getFailureValues: function () {
+                return $universalService.postRequest('./api/Practice/FailureList4Select');
+            },
+
+
+
+            getExecutorValues: function () {
+                return $universalService.postRequest('./api/Practice/ExecutorList4Select');
             },
         };
     }]);
