@@ -29,7 +29,7 @@
                         { name: 'FailureId', caption: 'Код ошибки', type: 0 },
                         { name: 'FailureName', caption: 'Ошибка', type: 0 },
                         { name: 'IncomingDate', caption: 'Дата заявки', type: 0, orderType: 0 },
-                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0},
+                        { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0 },
                         { name: 'Executed', caption: 'Выполнено', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
@@ -116,6 +116,8 @@
                         $scope.getModel.ExecutionDate = null;
                         $scope.getModel.Executed = null;
                         $scope.getModel.AbonentId = null;
+                        $scope.getModel.ExecutorId = null;
+                        $scope.getModel.FailureId = null;
                         setTimeout(function () {
                             $('#getmodel-abonent').val('default');
                             $('.selectpicker').selectpicker('refresh');
@@ -139,10 +141,34 @@
                             });
                     };
 
+                    $scope.getExecutors = function () {
+                        $scope.error = null;
+                        return caseService.getExecutorValues()
+                            .success(function (data) {
+                                $scope.executors = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getFailures = function () {
+                        $scope.error = null;
+                        return caseService.getFailureValues()
+                            .success(function (data) {
+                                $scope.failures = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
                     $scope.$watch('currentPage', function (newValue, oldValue) {
                         if (newValue == 'request-list') {
                             $q.all([
-                                $scope.getAbonents()
+                                $scope.getAbonents(),
+                                $scope.getExecutors(),
+                                $scope.getFailures()
                             ]).then(function () {
                                 $scope.refresh();
                             });
