@@ -32,8 +32,8 @@ namespace PracticeWebApp.Dto.Practice
 				AbonentId = itemOrm.ACCOUNTCD.ToString(),
 				ExecutorId = itemOrm.EXECUTORCD.ToString(),
 				FailureId = itemOrm.FAILURECD.ToString(),
-				IncomingDate = itemOrm.INCOMINGDATE.Date.ToString(),
-				ExecutionDate = itemOrm.INCOMINGDATE.Date.ToString(),
+				IncomingDate = itemOrm.INCOMINGDATE.Date.ToShortDateString(),
+				ExecutionDate = itemOrm.INCOMINGDATE.Date.ToShortDateString(),
 				Executed = itemOrm.EXECUTED.ToString()
 			};
 			return result;
