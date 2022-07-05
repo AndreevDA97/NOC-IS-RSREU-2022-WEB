@@ -25,6 +25,7 @@
                         { name: 'Phone', caption: 'Телефон', type: 0 },
                         { name: 'FlatNo', caption: 'Номер комнаты', type: 0 },
                         { name: 'HouseNo', caption: 'Номер дома', type: 0 },
+                        { name: 'StreetName', caption: 'Улица', type: 0 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [

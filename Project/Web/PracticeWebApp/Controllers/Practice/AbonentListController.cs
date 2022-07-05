@@ -21,6 +21,8 @@ namespace PracticeWebApp.Controllers.Practice
         {
             using (var db = DataBase.GetNew())
             {
+				// Просмотр формируемых SQL-запросов
+                db.EnableDebugTextWriter(true);
                 // Фильтрация
                 var query = model.GetQuery(db);
                 // Выполнение запроса

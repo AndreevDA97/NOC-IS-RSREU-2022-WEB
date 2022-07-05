@@ -16,7 +16,7 @@
             getAbonentValues: function () {
                 return $universalService.postRequest('./api/Practice/AbonentList4Select');
             },
-            saveStreet: function (abonentId, abonentDto) {
+            saveAbonent: function (abonentId, abonentDto) {
                 return $universalService.putRequest('./api/Practice/AbonentList/' + abonentId, abonentDto);
             },
             deleteAbonent: function (abonentId) {

@@ -11,6 +11,7 @@ namespace PracticeWebApp.Models.Practice
     {
         public string Fio { get; set; }
         public int? StreetId { get; set; }
+        public bool HasPhone { get; set; }
         public OrderDirection OrderByFio { get; set; }
 
         public IQueryable<ABONENT> GetQuery(PaySystemDataBase db,
@@ -23,6 +24,8 @@ namespace PracticeWebApp.Models.Practice
                 query = query.Where(item => item.Fio.Contains(Fio));
             if (StreetId.HasValue)
                 query = query.Where(item => item.STREETCD == StreetId);
+            if (HasPhone)
+                query = query.Where(item => item.PHONE.Trim() != "");
             // Сортировка
             query = query
                 .OrderBy(item => item.Fio, OrderByFio);

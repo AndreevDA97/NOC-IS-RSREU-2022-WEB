@@ -64,6 +64,12 @@
                             <option ng-repeat="item in streets" value="{{item.Id}}">{{item.Name}}</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            <input type="checkbox" ng-model="getModel.HasPhone">
+                            Наличие телефона
+                        </label>
+                    </div>
                     <div class="form-group-buttons">
                         <button type="button" class="btn btn-primary" ng-click="refresh()">Применить</button>
                         <button type="button" class="btn btn-default" ng-click="resetFilter()">Сбросить</button>
