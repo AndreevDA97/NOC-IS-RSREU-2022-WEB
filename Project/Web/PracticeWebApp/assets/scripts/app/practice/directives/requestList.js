@@ -61,15 +61,14 @@
 
                     $scope.resetOrder = function (column) {
                         $scope.getModel.OrderByIncomingDate = 0;
-                        $scope.getModel.OrderByExecutionDate = 0;
                         $scope.getModel.PageNumber = 1;
                         for (var i = 0; i < $scope.columns.length; i++) {
                             if ($scope.columns[i].orderType != undefined && $scope.columns[i] != column)
                                 $scope.columns[i].orderType = 0;
                         }
                     };
-                    $scope.$watch('columns[0].orderType', function (newValue, oldValue) {
-                        changeOrderType($scope.columns[0], newValue, oldValue);
+                    $scope.$watch('columns[7].orderType', function (newValue, oldValue) {
+                        changeOrderType($scope.columns[7], newValue, oldValue);
                     });
                     function changeOrderType(column, newValue, oldValue) {
                         if ($scope.stopRefreshList) return;
