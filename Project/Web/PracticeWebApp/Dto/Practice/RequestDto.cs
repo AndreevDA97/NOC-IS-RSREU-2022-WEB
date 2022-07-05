@@ -17,8 +17,12 @@ namespace PracticeWebApp.Dto.Practice
     {
 		public int Id { get; set; }
 		public string AbonentId { get; set; }
+		public string AbonentFIO { get; set; }
 		public int? ExecutorId { get; set; }
+		public string ExecutorFio { get; set; }
 		public int? FailureId { get; set; }
+		public string FailureName { get; set; }
+
         public DateTime? IncomingDate { get; set; }
         public DateTime? ExecutionDate { get; set; }
         public bool? Executed { get; set; }
@@ -30,12 +34,19 @@ namespace PracticeWebApp.Dto.Practice
 			{
 				Id = itemOrm.REQUESTCD,
 				AbonentId = itemOrm.ACCOUNTCD,
+				AbonentFIO = itemOrm.ABONENT.Fio,
 				ExecutorId = itemOrm.EXECUTORCD,
 				FailureId = itemOrm.FAILURECD,
 				IncomingDate = itemOrm.INCOMINGDATE.Date,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
 				Executed = (itemOrm.EXECUTED > 0 ? true : false)
 			};
+
+			if (!(itemOrm.EXECUTOR is null))
+				result.ExecutorFio = itemOrm.EXECUTOR.Fio;
+
+			if (!(itemOrm.DISREPAIR is null))
+				result.FailureName = itemOrm.DISREPAIR.FAILURENM;
 
 			return result;
 		}

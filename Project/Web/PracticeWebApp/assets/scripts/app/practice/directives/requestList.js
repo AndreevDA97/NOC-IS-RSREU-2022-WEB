@@ -21,6 +21,13 @@
                     commonFunctions.refreshEditorStyles();
 
                     $scope.columns = [
+                        { name: 'Id', caption: 'Код', type: 0 },
+                        { name: 'AbonentId', caption: 'Лицевой счёт абонента', type: 0 },
+                        { name: 'AbonentFIO', caption: 'ФИО абонента', type: 0 },
+                        { name: 'ExecutorId', caption: 'Код исполнителя', type: 0 },
+                        { name: 'ExecutorFio', caption: 'ФИО исполнителя', type: 0 },
+                        { name: 'FailureId', caption: 'Код ошибки', type: 0 },
+                        { name: 'FailureName', caption: 'Ошибка', type: 0 },
                         { name: 'IncomingDate', caption: 'Дата заявки', type: 0, orderType: 0 },
                         { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0},
                         { name: 'Executed', caption: 'Выполнено', type: 0 },
