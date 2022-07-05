@@ -21,6 +21,9 @@ namespace PracticeWebApp.Dto.Practice
 
         //дополнительные поля
         public string ExecutorFio { get; set; }
+        public string FailureNM { get; set; }
+        public string ExecutionDateText { get; set; }
+
 
         public static RequestDto Map(REQUEST itemOrm)
 		{
@@ -33,8 +36,10 @@ namespace PracticeWebApp.Dto.Practice
 				FailureId = itemOrm.FAILURECD,
 				IncomingDate = itemOrm.INCOMINGDATE,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
-				Executed = Convert.ToBoolean(itemOrm.EXECUTED),
-				ExecutorFio = itemOrm.EXECUTOR?.Fio
+				Executed = ExecutedValue(itemOrm.EXECUTED),
+				ExecutorFio = itemOrm.EXECUTOR?.Fio ?? "-",
+				FailureNM = itemOrm.DISREPAIR?.FAILURENM ?? "-",
+				ExecutionDateText = itemOrm.EXECUTIONDATE?.ToShortDateString() ?? "-"
 			};
 			return result;
 		}
@@ -51,6 +56,24 @@ namespace PracticeWebApp.Dto.Practice
 			itemOrm.EXECUTED = Convert.ToInt16(Executed);
 			return itemOrm;
 		}
+
+		//private static string GetExecutedText(short? value)
+  //      {
+		//	if (value is short v)
+  //          {
+		//		return v == 1 ? "Выполнено" : "Не выполнено";
+  //          }
+		//	return "-";
+  //      }
+
+		private static bool? ExecutedValue(short? value)
+        {
+			if (value is short v)
+            {
+				return (v == 1) ? true : false;
+            }
+			return null;
+        }
 
 		public string IsValidate()
         {

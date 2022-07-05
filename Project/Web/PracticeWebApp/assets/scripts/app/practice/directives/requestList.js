@@ -24,10 +24,10 @@
                         { name: 'Id', caption: 'Код', type: 0, orderType: 0 },
                         { name: 'AccountId', caption: 'Лицевой счет абонента', type: 0 },
                         { name: 'ExecutorFio', caption: 'Выполнитель', type: 0 },
-                        { name: 'FailureId', caption: 'Поломка', type: 0 },
+                        { name: 'FailureNM', caption: 'Поломка', type: 0 },
                         { name: 'IncomingDate', caption: 'Дата поступления', type: 0 },
-                        { name: 'ExecutionDate', caption: 'Дата выполнения', type: 0 },
-                        { name: 'Executed', caption: 'Выполнение', type: 0 },
+                        { name: 'ExecutionDateText', caption: 'Дата выполнения', type: 0 },
+                        { name: 'ExecRow', caption: 'Выполнение', type: 1 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -81,6 +81,8 @@
                         if ($scope.requests == null) return;
                         for (var i = 0; i < $scope.requests.length; i++) {
                             var row = $scope.requests[i];
+                            // как это работает rows, и откуда эта переменная
+                            row.ExecRow = '<span><input type="checkbox" ng-checked="rows[' + i + '].Executed" disabled /></span>'
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
                             actionRef += '<button type="button" title="Удалить" class="btn btn-default btn-xs" ng-click="actions[1](rows[' + i + '])"><span class="glyphicon glyphicon-remove"></span></button>';
