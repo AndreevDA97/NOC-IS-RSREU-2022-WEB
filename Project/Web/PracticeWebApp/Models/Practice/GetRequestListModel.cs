@@ -13,9 +13,9 @@ namespace PracticeWebApp.Models.Practice
         public string AbonentId { get; set; }
         public int? ExecutorId { get; set; }
         public int? FailureId { get; set; }
-        public string IncomingDate { get; set; }
-        public string ExecutionDate { get; set; }
-        public string Executed { get; set; }
+        public DateTime? IncomingDate { get; set; }
+        public DateTime? ExecutionDate { get; set; }
+        public bool? Executed { get; set; }
         public OrderDirection OrderByIncomingDate { get; set; }
 
         public IQueryable<REQUEST> GetQuery(PaySystemDataBase db,
@@ -30,11 +30,11 @@ namespace PracticeWebApp.Models.Practice
             //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
             //if (FailureId.HasValue)
             //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
-            if (!string.IsNullOrEmpty(IncomingDate))
-                query = query.Where(item => item.INCOMINGDATE.Date == DateTime.Parse(IncomingDate, CultureInfo.GetCultureInfo("ru")));
-            if (!string.IsNullOrEmpty(ExecutionDate))
-                query = query.Where(item => item.EXECUTIONDATE.Value.Date == DateTime.Parse(ExecutionDate, CultureInfo.GetCultureInfo("ru")));
-            if (!string.IsNullOrEmpty(Executed))
+            if (IncomingDate.HasValue)
+                query = query.Where(item => item.INCOMINGDATE == IncomingDate);
+            if (ExecutionDate.HasValue)
+                query = query.Where(item => item.EXECUTIONDATE == ExecutionDate);
+            if (Executed.HasValue)
                 query = query.Where(item => item.EXECUTED == Convert.ToInt16(Executed));
             // Сортировка
             query = query
