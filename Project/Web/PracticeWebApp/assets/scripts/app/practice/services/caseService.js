@@ -48,11 +48,11 @@
             getRequestValues: function () {
                 return $universalService.postRequest('./api/Practice/RequestList4Select');
             },
-            // FailureListController
-            getFailureValues: function () {
-                return $universalService.postRequest('./api/Practice/FailureList4Select');
-            },
             // ExecutorListController
+            getExecutorValues: function () {
+                return $universalService.postRequest('./api/Practice/ExecutorList4Select');
+            },
+            // FailureListController
             getFailureValues: function () {
                 return $universalService.postRequest('./api/Practice/FailureList4Select');
             }
