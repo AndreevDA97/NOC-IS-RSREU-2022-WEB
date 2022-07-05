@@ -19,17 +19,26 @@
                         <label class="control-label">Код</label>
                         <input type="text" class="form-control" ng-model="request.Id" placeholder="Введите код...">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Абонент</label>
-                        <input type="text" class="form-control" ng-model="request.AbonentId" placeholder="Введите абонента...">
+                    <div>
+                        <label class="control-label">Абонент:</label>
+                        <select class="form-control selectpicker" title='Выберите абонента' data-width="100%" data-live-search="true" ng-model="request.AbonentId" id="{{iddialog}}AbonentId">
+                            <option></option>
+                            <option ng-repeat="option in abonents" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Id}} - {{option.Fio}}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Исполнитель</label>
-                        <input type="text" class="form-control" ng-model="request.ExecutorId" placeholder="Введите исполнителя...">
+                    <div>
+                        <label class="control-label">Исполнитель:</label>
+                        <select class="form-control selectpicker" title='Выберите исполнителя... (на самом деле это поле не едактируется)' data-width="100%" data-live-search="true" ng-model="getModel.ExecutorId" id="{{iddialog}}ExecutorId">
+                            <option></option>
+                            <option ng-repeat="option in executors" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Id}} - {{option.Fio}}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Ошибка</label>
-                        <input type="text" class="form-control" ng-model="request.FailureId" placeholder="Введите ошибку...">
+                    <div>
+                        <label class="control-label">Ошибка:</label>
+                        <select class="form-control selectpicker" title='Выберите ошибку... (на самом деле это поле не едактируется)' data-width="100%" data-live-search="true" ng-model="getModel.FailureId" id="{{iddialog}}FailureId">
+                            <option></option>
+                            <option ng-repeat="option in failures" value="{{option.Id}}" data-subtext="{{option.Note}}">{{option.Id}} - {{option.Name}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата заявки</label>

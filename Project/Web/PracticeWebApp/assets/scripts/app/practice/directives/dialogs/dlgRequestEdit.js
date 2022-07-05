@@ -22,11 +22,17 @@
                             $scope.request.Pays = [];
                         $scope.loadPromise = { message: 'Пожалуйста подождите...' };
                         $scope.loadPromise.promise = $q.all([
-                            $scope.getStreets()
+                            $scope.getAbonents(),
+                            $scope.getExecutors(),
+                            $scope.getFailures()
                         ]).then(function () {
                             setTimeout(function () {
-                                $(modal + 'StreetId').selectpicker('val', $scope.request.StreetId);
-                                $(modal + 'StreetId').selectpicker('refresh');
+                                $(modal + 'AbonentId').selectpicker('val', $scope.request.AbonentId);
+                                $(modal + 'AbonentId').selectpicker('refresh');
+                                $(modal + 'ExecutorId').selectpicker('val', $scope.request.ExecutorId);
+                                $(modal + 'ExecutorId').selectpicker('refresh');
+                                $(modal + 'FailureId').selectpicker('val', $scope.request.FailureId);
+                                $(modal + 'FailureId').selectpicker('refresh');
                             }, 0);
                         });
                         setTimeout(function () {
@@ -40,11 +46,33 @@
                         }, 0);
                     });
 
-                    $scope.getStreets = function () {
+                    $scope.getAbonents = function () {
                         $scope.error = null;
-                        return caseService.getStreetValues()
+                        return caseService.getAbonentValues()
                             .success(function (data) {
-                                $scope.streets = data;
+                                $scope.abonents = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getExecutors = function () {
+                        $scope.error = null;
+                        return caseService.getExecutorValues()
+                            .success(function (data) {
+                                $scope.executors = data;
+                            })
+                            .error(function (error) {
+                                $scope.error = 'Ошибка загрузки: ' + error.Message;
+                            });
+                    };
+
+                    $scope.getFailures = function () {
+                        $scope.error = null;
+                        return caseService.getFailureValues()
+                            .success(function (data) {
+                                $scope.failures = data;
                             })
                             .error(function (error) {
                                 $scope.error = 'Ошибка загрузки: ' + error.Message;
