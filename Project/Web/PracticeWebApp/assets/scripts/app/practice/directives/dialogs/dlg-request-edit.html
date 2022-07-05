@@ -33,15 +33,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата заявки</label>
-                        <input type="text" class="form-control" ng-model="request.IncomingDate" placeholder="Введите дату заявки...">
+                        <input type="text" class="form-control form-control datepicker" data-date-format="dd.mm.yyyy" ng-model="request.IncomingDate" placeholder="Введите дату заявки...">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата выполнения заявки</label>
-                        <input type="text" class="form-control" ng-model="request.ExecutionDate" placeholder="Введите дату выполнения заявки...">
+                        <input type="text" class="form-control form-control datepicker" data-date-format="dd.mm.yyyy" ng-model="request.ExecutionDate" placeholder="Введите дату выполнения заявки...">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Выполнено</label>
-                        <input type="text" class="form-control" ng-model="request.Executed" placeholder="Введите статус заявки...">
+                        <input type="checkbox" class="form-control checkbox" ng-model="request.Executed" placeholder="Введите статус заявки...">
                     </div>
                     <div ng-show="error" class="form-group font-small-danger">
                         {{error}}
