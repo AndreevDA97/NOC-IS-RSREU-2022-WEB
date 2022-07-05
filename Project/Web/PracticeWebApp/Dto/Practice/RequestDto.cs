@@ -17,11 +17,11 @@ namespace PracticeWebApp.Dto.Practice
     {
 		public int Id { get; set; }
 		public string AbonentId { get; set; }
-		public string ExecutorId { get; set; }
-		public string FailureId { get; set; }
-        public string IncomingDate { get; set; }
-        public string ExecutionDate { get; set; }
-        public string Executed { get; set; }
+		public int? ExecutorId { get; set; }
+		public int? FailureId { get; set; }
+        public DateTime? IncomingDate { get; set; }
+        public DateTime? ExecutionDate { get; set; }
+        public bool? Executed { get; set; }
 
         public static RequestDto Map(REQUEST itemOrm)
 		{
@@ -29,13 +29,14 @@ namespace PracticeWebApp.Dto.Practice
 			var result = new RequestDto
 			{
 				Id = itemOrm.REQUESTCD,
-				AbonentId = itemOrm.ACCOUNTCD.ToString(),
-				ExecutorId = itemOrm.EXECUTORCD.ToString(),
-				FailureId = itemOrm.FAILURECD.ToString(),
-				IncomingDate = itemOrm.INCOMINGDATE.Date.ToShortDateString(),
-				ExecutionDate = itemOrm.INCOMINGDATE.Date.ToShortDateString(),
-				Executed = itemOrm.EXECUTED.ToString()
+				AbonentId = itemOrm.ACCOUNTCD,
+				ExecutorId = itemOrm.EXECUTORCD,
+				FailureId = itemOrm.FAILURECD,
+				IncomingDate = itemOrm.INCOMINGDATE.Date,
+				ExecutionDate = itemOrm.EXECUTIONDATE,
+				Executed = (itemOrm.EXECUTED > 0 ? true : false)
 			};
+
 			return result;
 		}
 
@@ -44,23 +45,23 @@ namespace PracticeWebApp.Dto.Practice
 			if (itemOrm == null) itemOrm = new REQUEST();
 			itemOrm.REQUESTCD = Id;
 			itemOrm.ACCOUNTCD = AbonentId;
-			itemOrm.EXECUTORCD = int.Parse(ExecutorId);
-			itemOrm.FAILURECD = int.Parse(FailureId);
-			itemOrm.INCOMINGDATE = DateTime.Parse(IncomingDate, CultureInfo.GetCultureInfo("ru"));
-			itemOrm.EXECUTIONDATE = DateTime.Parse(ExecutionDate, CultureInfo.GetCultureInfo("ru"));
-			itemOrm.EXECUTED = Int16.Parse(Executed);
+			itemOrm.EXECUTORCD = ExecutorId;
+			itemOrm.FAILURECD = FailureId;
+			itemOrm.INCOMINGDATE = IncomingDate.Value.Date;
+			itemOrm.EXECUTIONDATE = ExecutionDate.Value.Date;
+			itemOrm.EXECUTED = Executed == true ? (short)1 : (short)0;
 			return itemOrm;
 		}
 
 		public string IsValidate()
 		{
 			string errorMessage = null;
-			if (string.IsNullOrEmpty(IncomingDate))
+			if (IncomingDate.HasValue)
 			{
 				errorMessage = "Не задана дата принятия заявки!";
 				return errorMessage;
 			}
-			if (string.IsNullOrEmpty(ExecutionDate))
+			if (/*string.IsNullOrEmpty(ExecutionDate)*/ExecutionDate.HasValue)
 			{
 				errorMessage = "Не задана дата исполнения заявки!";
 				return errorMessage;
