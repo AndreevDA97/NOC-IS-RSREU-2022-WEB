@@ -26,10 +26,10 @@ namespace PracticeWebApp.Models.Practice
                 query = db.REQUEST.OrderByDescending(item => item.REQUESTCD).AsQueryable();
             if (!string.IsNullOrEmpty(AbonentId))
                 query = query.Where(item => item.ACCOUNTCD == AbonentId);
-            //if (ExecutorId.HasValue)
-            //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
-            //if (FailureId.HasValue)
-            //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
+            if (ExecutorId.HasValue)
+                query = query.Where(item => item.EXECUTORCD == ExecutorId);
+            if (FailureId.HasValue)
+                query = query.Where(item => item.EXECUTORCD == ExecutorId);
             if (IncomingDate.HasValue)
                 query = query.Where(item => item.INCOMINGDATE == IncomingDate);
             if (ExecutionDate.HasValue)

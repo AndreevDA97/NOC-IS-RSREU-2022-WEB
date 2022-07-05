@@ -121,7 +121,7 @@ namespace PracticeWebApp.Controllers.Practice
                     .Select(a => new
                     { 
                         Id = a.ACCOUNTCD,
-                        Name = a.Fio
+                        Fio = a.Fio
                     })
                     .ToList();
 
