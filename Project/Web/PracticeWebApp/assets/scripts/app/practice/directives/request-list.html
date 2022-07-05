@@ -68,6 +68,13 @@
             <div class="panel-body collapse in">
                 <form class="form" role="form">
                     <div class="form-group">
+                        <label class="control-label">Абонент:</label>
+                        <select id="getmodel-abonent" class="form-control selectpicker" title='Выберите лицевой счёт...' data-width="100%" ng-model="getModel.AbonentId">
+                            <option></option>
+                            <option ng-repeat="item in abonents" value="{{item.Id}}">{{item.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label">Дата принятия заявки:</label>
                         <input type="text" class="form-control datepicker" data-date-format="dd.mm.yyyy" ng-model="getModel.IncomingDate" placeholder="IncomingDate">
                     </div>

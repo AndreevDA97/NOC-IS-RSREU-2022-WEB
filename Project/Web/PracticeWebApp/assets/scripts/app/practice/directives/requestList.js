@@ -115,8 +115,9 @@
                         $scope.getModel.IncomingDate = null;
                         $scope.getModel.ExecutionDate = null;
                         $scope.getModel.Executed = null;
+                        $scope.getModel.AbonentId = null;
                         setTimeout(function () {
-                            $('#getmodel-street').val('default');
+                            $('#getmodel-abonent').val('default');
                             $('.selectpicker').selectpicker('refresh');
                             $scope.$apply();
                         }, 0);
@@ -127,11 +128,11 @@
                         $scope.refresh();
                     });
 
-                    $scope.getStreets = function () {
+                    $scope.getAbonents = function () {
                         $scope.error = null;
-                        return caseService.getStreetValues()
+                        return caseService.getAbonentValues()
                             .success(function (data) {
-                                $scope.streets = data;
+                                $scope.abonents = data;
                             })
                             .error(function (error) {
                                 $scope.error = 'Ошибка загрузки: ' + error.Message;
@@ -141,6 +142,7 @@
                     $scope.$watch('currentPage', function (newValue, oldValue) {
                         if (newValue == 'request-list') {
                             $q.all([
+                                $scope.getAbonents()
                             ]).then(function () {
                                 $scope.refresh();
                             });
