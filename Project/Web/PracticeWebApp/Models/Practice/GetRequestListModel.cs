@@ -24,8 +24,8 @@ namespace PracticeWebApp.Models.Practice
             // Фильтрация
             if (query == null)
                 query = db.REQUEST.OrderByDescending(item => item.REQUESTCD).AsQueryable();
-            //if (!string.IsNullOrEmpty(AbonentId))
-            //    query = query.Where(item => item.ACCOUNTCD == AbonentId);
+            if (!string.IsNullOrEmpty(AbonentId))
+                query = query.Where(item => item.ACCOUNTCD == AbonentId);
             //if (ExecutorId.HasValue)
             //    query = query.Where(item => item.EXECUTORCD == ExecutorId);
             //if (FailureId.HasValue)
