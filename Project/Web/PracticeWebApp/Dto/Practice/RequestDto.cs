@@ -37,7 +37,7 @@ namespace PracticeWebApp.Dto.Practice
 				AbonentFIO = itemOrm.ABONENT.Fio,
 				ExecutorId = itemOrm.EXECUTORCD,
 				FailureId = itemOrm.FAILURECD,
-				IncomingDate = itemOrm.INCOMINGDATE.Date,
+				IncomingDate = itemOrm.INCOMINGDATE,
 				ExecutionDate = itemOrm.EXECUTIONDATE,
 				Executed = (itemOrm.EXECUTED > 0 ? true : false)
 			};
