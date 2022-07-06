@@ -42,11 +42,11 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата поступления заявки</label>
-                        <input type="date" class="form-control" ng-model="request.IncomingDate" placeholder="Выберите дату поступления заявки...">
+                        <input type="text" class="form-control datepicker" date-date-format ="dd.mm.yyyy" placeholder="--.--.----" ng-model="request.IncomingDate">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Дата выполнения</label>
-                        <input type="date" class="form-control" ng-model="request.ExecutionDate" placeholder="Выберите дату выполнения...">
+                        <input type="text" class="form-control datepicker" date-date-format ="dd.mm.yyyy" ng-model="request.ExecutionDate"  placeholder="--.--.----">
                     </div>
                     <div class="form-group">
                         <label class="control-label" title=" Прогресс выполнения">
