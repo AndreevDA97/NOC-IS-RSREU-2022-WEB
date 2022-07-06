@@ -30,7 +30,7 @@
                         { name: 'FailureName', caption: 'Ошибка', type: 0 },
                         { name: 'IncomingDate', caption: 'Дата заявки', type: 0, orderType: 0 },
                         { name: 'ExecutionDate', caption: 'Дата исполнения', type: 0 },
-                        { name: 'Executed', caption: 'Выполнено', type: 0 },
+                        { name: 'ExecutedRow', caption: 'Выполнено', type: 1 },
                         { name: 'actions', caption: 'Действия', type: 1, }
                     ];
                     $scope.actions = [
@@ -84,6 +84,7 @@
                         if ($scope.requests == null) return;
                         for (var i = 0; i < $scope.requests.length; i++) {
                             var row = $scope.requests[i];
+                            row.ExecutedRow = '<span><input type="checkbox" ng-checked="rows[' + i + '].Executed" disabled /></span>';
                             row.IsPrimaryHtml = '<div><input type="checkbox" ng-checked="' + row.IsPrimary + '" disabled></div>';
                             var actionRef = '';
                             actionRef += '<button type="button" title="Редактировать" class="btn btn-default btn-xs" ng-click="actions[0](rows[' + i + '])"><span class="glyphicon glyphicon-pencil"></span></button>';
