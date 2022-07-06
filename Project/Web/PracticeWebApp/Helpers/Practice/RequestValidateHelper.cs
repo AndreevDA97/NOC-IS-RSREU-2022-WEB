@@ -71,6 +71,24 @@ namespace PracticeWebApp.Helpers.Practice
             }
             return true;
         }
+        public bool ValidateById(int? requestId, out REQUEST requestOrm)
+        {
+            requestOrm = null;
+            if (!requestId.HasValue)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Не указан идентификатор заявки."));
+                return false;
+            }
+            requestOrm = db.REQUEST.SingleOrDefault(c => c.REQUESTCD == requestId);
+            if (requestOrm == null)
+            {
+                Result = Request.CreateResponse(HttpStatusCode.BadRequest,
+                            new WebError("Указанная заявка не найдена."));
+                return false;
+            }
+            return true;
+        }
         #endregion
     }
 }

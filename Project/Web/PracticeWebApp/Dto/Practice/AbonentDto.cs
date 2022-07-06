@@ -32,6 +32,7 @@ namespace PracticeWebApp.Dto.Practice
 				Phone = itemOrm.PHONE,
 				FlatNo = itemOrm.FLATNO,
 				HouseNo = itemOrm.HOUSENO
+			
 			};
 			return result;
 		}

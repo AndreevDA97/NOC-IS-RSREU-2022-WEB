@@ -21,6 +21,10 @@
                         if (!$scope.abonent.Pays)
                             $scope.abonent.Pays = [];
                         $scope.loadPromise = { message: 'Пожалуйста подождите...' };
+
+
+
+
                         $scope.loadPromise.promise = $q.all([
                             $scope.getStreets()
                         ]).then(function () {
@@ -29,6 +33,7 @@
                                 $(modal + 'StreetId').selectpicker('refresh');
                             }, 0);
                         });
+
                         setTimeout(function () {
                             $(modal + ' .selectpicker').selectpicker();
                             $(modal + ' .selectpicker').selectpicker('refresh');
@@ -40,6 +45,9 @@
                         }, 0);
                     });
 
+
+
+                    ////////////////////////////////////////////////////
                     $scope.getStreets = function () {
                         $scope.error = null;
                         return caseService.getStreetValues()
@@ -50,6 +58,18 @@
                                 $scope.error = 'Ошибка загрузки: ' + error.Message;
                             });
                     };
+
+
+
+
+
+
+
+
+
+
+
+
 
                     //$scope.$watchCollection('abonent.Pays', function (newVal, oldVal) {
                     //    if (!newVal || newVal.length == 0) return;
