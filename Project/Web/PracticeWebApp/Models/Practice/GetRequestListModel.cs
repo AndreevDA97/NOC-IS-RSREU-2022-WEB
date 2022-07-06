@@ -29,7 +29,7 @@ namespace PracticeWebApp.Models.Practice
             if (ExecutorId.HasValue)
                 query = query.Where(item => item.EXECUTORCD == ExecutorId);
             if (FailureId.HasValue)
-                query = query.Where(item => item.EXECUTORCD == ExecutorId);
+                query = query.Where(item => item.FAILURECD == FailureId);
             if (IncomingDate.HasValue)
                 query = query.Where(item => item.INCOMINGDATE == IncomingDate);
             if (ExecutionDate.HasValue)
